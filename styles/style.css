@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-*{padding: 0;margin: 0;border: 0;}
+*{padding: 0;margin: 0;border: 0;transition: all, 0.3s, ease}
 
 *,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
 
@@ -498,4 +498,34 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
     border-radius: inherit;
     z-index: -1;
     animation: gradient-flow 4s linear infinite;
+}
+
+.new-column-form, .new-task-form{
+    position: absolute;
+    max-width: 40%;
+    width: 100%;
+    height: 60%;
+    top: 25vh;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
+    border: 1.5px dashed #b6b6b6;
+    border-radius: 30px;
+    padding: 25px;
+    flex-direction: column;
+    gap: 26px;
+    z-index: 4;
+}
+.backdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
+
+.input-style-default{
+    @apply w-full p-[10px] bg-[rgba(0,0,0,0.71)] border-[1px] border-solid border-text-color-accent rounded-md;
 }
