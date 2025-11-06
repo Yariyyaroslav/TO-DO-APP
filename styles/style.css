@@ -56,7 +56,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
     @apply text-text-color-main text-[16px] leading-[150%] font-semibold glow-on-hover;
 }
 .text-style-main{
-    @apply text-text-color-main text-[14px] leading-[140%];
+    @apply text-text-color-main text-[14px] leading-[140%] select-none;
 }
 .text-style-big-bold{
     @apply text-[25px] leading-[44px] font-bold;
@@ -150,7 +150,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 
 
 .section-style{
-    @apply flex flex-col justify-center items-center w-full gap-[120px];
+    @apply flex flex-col justify-center items-center w-full gap-[120px] overflow-hidden;
 }
 .benefits-card{
     @apply p-[34px] rounded-[16px] max-w-[448px] w-full h-[200px] flex-shrink-0;
@@ -267,4 +267,235 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
     to {
         transform: rotate(360deg);
     }
+}
+
+.magic-text {
+    background: linear-gradient(
+            60deg,
+            #5073b8,
+            #1098ad,
+            #07b39b,
+            #6fba82,
+            #f79533,
+            #f37055,
+            #ef4e7b,
+            #a166ab,
+            #5073b8
+    );
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-flow 4s linear infinite;
+    user-select: none;
+}
+.magic-text2 {
+    background: linear-gradient(
+            60deg,
+            #26416e,
+            #3b5c87,
+            #2a87a1,
+            #006c59,
+            #621cba,
+            #880e4f,
+            #26416e
+    );
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-flow 4s linear infinite;
+    user-select: none;
+}
+.magic-text3 {
+    background: linear-gradient(
+            60deg,
+            #6d4c41,
+            #827717,
+            #b35832,
+            #ffb300,
+            #976c2b,
+            #ba4f04,
+            #6d4c41
+    );
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-flow 4s linear infinite;
+    user-select: none;
+}
+.magic-text4 {
+    background: linear-gradient(
+            60deg,
+            #87ceeb,
+            #98fb98,
+            #fffacd,
+            #ffdead,
+            #d8bfd8,
+            #add8e6,
+            #f0e68c,
+            #87ceeb
+    );
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-flow 4s linear infinite;
+    user-select: none;
+}
+@keyframes gradient-flow {
+    from {
+        background-position: 0% center;
+    }
+    to {
+        background-position: 300% center;
+    }
+}
+
+.step-card{
+    @apply max-w-[400px] h-[200px] w-full p-[25px] rounded-[16px];
+}
+.step-card{
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.step-card1::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            60deg,
+            #5073b8,
+            #1098ad,
+            #07b39b,
+            #6fba82,
+            #f79533,
+            #f37055,
+            #ef4e7b,
+            #a166ab,
+            #5073b8
+    );
+    background-size: 300% auto;
+    border-radius: inherit;
+    z-index: -1;
+    animation: gradient-flow 4s linear infinite;
+}
+.step-card2::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            60deg,
+            #26416e,
+            #3b5c87,
+            #2a87a1,
+            #006c59,
+            #621cba,
+            #880e4f,
+            #26416e
+    );
+    background-size: 300% auto;
+    border-radius: inherit;
+    z-index: -1;
+    animation: gradient-flow 4s linear infinite;
+}
+.step-card3::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            60deg,
+            #6d4c41,
+            #827717,
+            #b35832,
+            #ffb300,
+            #976c2b,
+            #ba4f04,
+            #6d4c41
+    );
+    background-size: 300% auto;
+    border-radius: inherit;
+    z-index: -1;
+    animation: gradient-flow 4s linear infinite;
+}
+.step-card4::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            60deg,
+            #87ceeb,
+            #98fb98,
+            #fffacd,
+            #ffdead,
+            #d8bfd8,
+            #add8e6,
+            #f0e68c,
+            #87ceeb
+    );
+    background-size: 300% auto;
+    border-radius: inherit;
+    z-index: -1;
+    animation: gradient-flow 4s linear infinite;
+}
+
+.step-card::after{
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background-color: rgba(0,0,0,1);
+    border-radius: inherit;
+    z-index: -1;
+}
+
+.who-card{
+    @apply max-w-[448px] w-full p-[15px] rounded-[16px] h-[300px] border-[1px] border-dashed border-gray-200;
+}
+
+
+.button-card{
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.button-card::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            60deg,
+            #5073b8,
+            #1098ad,
+            #07b39b,
+            #6fba82,
+            #f79533,
+            #f37055,
+            #ef4e7b,
+            #a166ab,
+            #5073b8
+    );
+    background-size: 300% auto;
+    border-radius: inherit;
+    z-index: -1;
+    animation: gradient-flow 4s linear infinite;
 }

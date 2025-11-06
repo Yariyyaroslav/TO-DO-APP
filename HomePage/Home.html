@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>RoadMap</title>
     <link rel="stylesheet" href="../dist/output.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body class="bg-black text-white font-[Montserrat] flex flex-col items-center min-h-screen gap-[240px] w-full">
 <header class="bg-[rgba(0,0,0,0.51)] w-full backdrop-blur-sm sticky top-0 z-10 ">
@@ -28,7 +30,7 @@
         </div>
             <button class="glowing-border-button">START YOUR JOURNEY</button>
     </section>
-    <section class="section-style">
+    <section class="section-style" id="trigger">
         <div class="flex flex-col items-center justify-center gap-[80px]">
             <h2 class="text-center text-[48px] font-bold">The Benefits You'll Get</h2>
             <div class="flex flex-row justify-center items-center gap-[50px]">
@@ -56,11 +58,54 @@
             </div>
         </div>
     </section>
+    <section class="section-style">
+        <h2 class="text-center text-[48px] font-bold magic-text">How It Works???</h2>
+        <div class="flex flex-col items-center justify-center gap-[60px]">
+            <div class="flex flex-col items-center justify-center gap-[16px] step-card step-card2">
+                <h3 class="text-style-big-bold magic-text2">1. Build Your RoadMap</h3>
+                <p class="text-style-main text-center">Start with a goal. Use our visual drag-and-drop builder to map out every milestone and create a clear path to success.</p>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-[16px] step-card step-card3">
+                <h3 class="text-style-big-bold magic-text3">2. Set Your Priorities</h3>
+                <p class="text-style-main text-center">Move your key tasks to the Priority Board. Instantly align your team and know exactly what to focus on next.</p>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-[16px] step-card step-card4">
+                <h3 class="text-style-big-bold magic-text4">3. Track & Execute</h3>
+                <p class="text-style-main text-center">Monitor your progress in real-time, eliminate bottlenecks, and celebrate as your vision becomes reality.</p>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-[16px] step-card step-card1">
+                <h3 class="magic-text text-style-large-bold">Here You Are</h3>
+            </div>
+        </div>
+    </section>
+    <section class="section-style">
+        <h2 class="text-[48px] font-bold text-center">Who Is It For?</h2>
+        <div class="flex flex-row items-center justify-center gap-[40px]">
+            <div class="flex flex-col gap-[16px] items-center justify-center text-center who-card">
+                <h3 class="text-style-big-bold magic-text4 text-center">For Project Managers</h3>
+                <p class="text-style-main text-center">Stop drowning in spreadsheets and emails. Get a high-level view of all your projects in one place and keep every stakeholder informed, effortlessly.</p>
+            </div>
+            <div class="flex flex-col gap-[16px] items-center justify-center text-center who-card">
+                <h3 class="text-style-big-bold magic-text4 text-center">For Growing Teams</h3>
+                <p class="text-style-main text-center">Finally, a tool that aligns everyone. Our Priority Board ensures every team member knows what matters most, eliminating confusion and boosting productivity.</p>
+            </div>
+            <div class="flex flex-col gap-[16px] items-center justify-center text-center who-card">
+                <h3 class="text-style-big-bold magic-text4 text-center">For Startups & Founders</h3>
+                <p class="text-style-main text-center">Move faster than your competition. Plan your product launch, manage development sprints, and pivot quickly—all with one flexible tool.</p>
+            </div>
+        </div>
+    </section>
+    <section class="section-style">
+        <h2 class="text-[48px] font-bold text-center">Stop the Chaos. Start Your Journey Today.</h2>
+        <p class="text-style-main">The intuitive way to plan, track, and execute your projects. Ready to try?</p>
+        <button class="text-style-big-bold button-card step-card">Start your journey NOW</button>
+    </section>
 </main>
 <footer class=" py-6 mt-16 border-t border-gray-800 text-center">
     <p class="text-sm text-gray-500">
         &copy; 2025 RoadMap.com. All Rights Reserved.
     </p>
 </footer>
+<script src="../scripts/home.js"></script>
 </body>
 </html>

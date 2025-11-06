@@ -1472,10 +1472,6 @@ video {
   justify-items: stretch;
 }
 
-.gap-\[120px\] {
-  gap: 120px;
-}
-
 .gap-\[16px\] {
   gap: 16px;
 }
@@ -1484,16 +1480,28 @@ video {
   gap: 20px;
 }
 
+.gap-\[220px\] {
+  gap: 220px;
+}
+
+.gap-\[240px\] {
+  gap: 240px;
+}
+
 .gap-\[24px\] {
   gap: 24px;
 }
 
-.gap-\[500px\] {
-  gap: 500px;
+.gap-\[40px\] {
+  gap: 40px;
 }
 
 .gap-\[50px\] {
   gap: 50px;
+}
+
+.gap-\[60px\] {
+  gap: 60px;
 }
 
 .gap-\[70px\] {
@@ -1502,26 +1510,6 @@ video {
 
 .gap-\[80px\] {
   gap: 80px;
-}
-
-.gap-\[300px\] {
-  gap: 300px;
-}
-
-.gap-\[180px\] {
-  gap: 180px;
-}
-
-.gap-\[200px\] {
-  gap: 200px;
-}
-
-.gap-\[220px\] {
-  gap: 220px;
-}
-
-.gap-\[240px\] {
-  gap: 240px;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -2857,6 +2845,9 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .text-style-main {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   font-size: 14px;
   line-height: 140%;
   --tw-text-opacity: 1;
@@ -2983,6 +2974,7 @@ h1,h2,h3,h4,h5,h6{
   align-items: center;
   justify-content: center;
   gap: 120px;
+  overflow: hidden;
 }
 
 .benefits-card {
@@ -3112,6 +3104,264 @@ h1,h2,h3,h4,h5,h6{
   to {
     transform: rotate(360deg);
   }
+}
+
+.magic-text {
+  background: linear-gradient(
+            60deg,
+            #5073b8,
+            #1098ad,
+            #07b39b,
+            #6fba82,
+            #f79533,
+            #f37055,
+            #ef4e7b,
+            #a166ab,
+            #5073b8
+    );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-flow 4s linear infinite;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.magic-text2 {
+  background: linear-gradient(
+            60deg,
+            #26416e,
+            #3b5c87,
+            #2a87a1,
+            #006c59,
+            #621cba,
+            #880e4f,
+            #26416e
+    );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-flow 4s linear infinite;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.magic-text3 {
+  background: linear-gradient(
+            60deg,
+            #6d4c41,
+            #827717,
+            #b35832,
+            #ffb300,
+            #976c2b,
+            #ba4f04,
+            #6d4c41
+    );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-flow 4s linear infinite;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.magic-text4 {
+  background: linear-gradient(
+            60deg,
+            #87ceeb,
+            #98fb98,
+            #fffacd,
+            #ffdead,
+            #d8bfd8,
+            #add8e6,
+            #f0e68c,
+            #87ceeb
+    );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-flow 4s linear infinite;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+@keyframes gradient-flow {
+  from {
+    background-position: 0% center;
+  }
+
+  to {
+    background-position: 300% center;
+  }
+}
+
+.step-card {
+  height: 200px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 16px;
+  padding: 25px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.step-card1::before{
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+            60deg,
+            #5073b8,
+            #1098ad,
+            #07b39b,
+            #6fba82,
+            #f79533,
+            #f37055,
+            #ef4e7b,
+            #a166ab,
+            #5073b8
+    );
+  background-size: 300% auto;
+  border-radius: inherit;
+  z-index: -1;
+  animation: gradient-flow 4s linear infinite;
+}
+
+.step-card2::before{
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+            60deg,
+            #26416e,
+            #3b5c87,
+            #2a87a1,
+            #006c59,
+            #621cba,
+            #880e4f,
+            #26416e
+    );
+  background-size: 300% auto;
+  border-radius: inherit;
+  z-index: -1;
+  animation: gradient-flow 4s linear infinite;
+}
+
+.step-card3::before{
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+            60deg,
+            #6d4c41,
+            #827717,
+            #b35832,
+            #ffb300,
+            #976c2b,
+            #ba4f04,
+            #6d4c41
+    );
+  background-size: 300% auto;
+  border-radius: inherit;
+  z-index: -1;
+  animation: gradient-flow 4s linear infinite;
+}
+
+.step-card4::before{
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+            60deg,
+            #87ceeb,
+            #98fb98,
+            #fffacd,
+            #ffdead,
+            #d8bfd8,
+            #add8e6,
+            #f0e68c,
+            #87ceeb
+    );
+  background-size: 300% auto;
+  border-radius: inherit;
+  z-index: -1;
+  animation: gradient-flow 4s linear infinite;
+}
+
+.step-card::after{
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background-color: rgba(0,0,0,1);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.who-card {
+  height: 300px;
+  width: 100%;
+  max-width: 448px;
+  border-radius: 16px;
+  border-width: 1px;
+  border-style: dashed;
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
+  padding: 15px;
+}
+
+.button-card{
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.button-card::before{
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+            60deg,
+            #5073b8,
+            #1098ad,
+            #07b39b,
+            #6fba82,
+            #f79533,
+            #f37055,
+            #ef4e7b,
+            #a166ab,
+            #5073b8
+    );
+  background-size: 300% auto;
+  border-radius: inherit;
+  z-index: -1;
+  animation: gradient-flow 4s linear infinite;
 }
 
 @media (min-width: 640px) {
