@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{padding: 0;margin: 0;border: 0;}
+
+*,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+
+:focus,:active{outline: none;}
+
+a:focus,a:active{outline: none;}
+
+nav,footer,header,aside{display: block;}
+
+html,body{height:100%;width:100%;font-size:100%;line-height:1;font-size:14px;-ms-text-size-adjust:100%;-moz-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
+
+input,button,textarea{font-family:inherit;}
+
+input::-ms-clear{display: none;}
+
+button{cursor: pointer;}
+
+button::-moz-focus-inner{padding:0;border:0;}
+
+a,a:visited{text-decoration: none;}
+
+a:hover{text-decoration: none;}
+
+ul li{list-style: none;}
+
+img{vertical-align: top;}
+
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../public/fonts/Montserrat-VariableFont_wght.ttf');
+}
+.logo-style{
+    user-select: none;
+}
+.task-style{
+    @apply flex flex-col gap-[8px] p-[24px] rounded-[16px];
+}
+.text-style-title{
+    @apply text-text-color-main text-[16px] leading-[150%] font-semibold glow-on-hover;
+}
+.text-style-main{
+    @apply text-text-color-main text-[14px] leading-[140%];
+}
+.text-style-big-bold{
+    @apply text-[25px] leading-[44px] font-bold;
+}
+.text-style-large-bold{
+    @apply text-[35px] leading-[44px] font-bold;
+}
+.glow-on-hover {
+    transition: text-shadow 0.3s ease-in-out;
+    text-shadow: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.glow-on-hover:hover {
+    text-shadow:
+            0 0 10px #f6f7f8,
+            0 0 20px #ebf5ff,
+            0 0 30px #ebf5ff;
+    @apply text-text-color-main;
+}
+
+.button-style-main{
+    @apply text-[35px] text-[#2A2A2A] cursor-pointer w-[35px] h-[35px] font-[200];
+}
+.button-plus-on-hover:hover, .button-plus-on-hover:hover .button-style-main, .button-plus-on-hover:hover .button-style-task {
+    transition: all 0.3s ease-in-out;
+    @apply text-text-color-main border-text-color-main;
+}
+
