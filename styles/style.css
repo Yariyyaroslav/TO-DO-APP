@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 *{padding: 0;margin: 0;border: 0;}
 
 *,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
@@ -85,4 +86,185 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
     transition: all 0.3s ease-in-out;
     @apply text-text-color-main border-text-color-main;
 }
+.glowing-border-button {
+    position: relative;
+    overflow: hidden;
+    padding: 1.2em 1.5em;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    background-color: #2D3748;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+.glowing-border-button:hover {
+    background-color: #4A5568;
+}
+.glowing-border-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            60deg,
+            #f79533,
+            #f37055,
+            #ef4e7b,
+            #a166ab,
+            #5073b8,
+            #1098ad,
+            #07b39b,
+            #6fba82
+    );
+    background-size: 300% 300%;
+    border-radius: inherit;
+    z-index: -1;
+    animation: rotateBackground 4s linear infinite;
+}
 
+.glowing-border-button::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background-color: black;
+    border-radius: inherit;
+    z-index: -1;
+}
+
+@keyframes rotateBackground {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+.section-style{
+    @apply flex flex-col justify-center items-center w-full gap-[120px];
+}
+.benefits-card{
+    @apply p-[34px] rounded-[16px] max-w-[448px] w-full h-[200px] flex-shrink-0;
+}
+.glowing-border-card, .glowing-border-card2, .glowing-border-card3, .glowing-border-card4{
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.glowing-border-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            60deg,
+            #f79533,
+            #f37055,
+            #ef4e7b,
+            #a166ab,
+            #5073b8,
+            #1098ad,
+            #07b39b,
+            #6fba82
+    );
+    background-size: 300% 300%;
+    border-radius: inherit;
+    z-index: -1;
+    animation: rotateBackground 4s linear infinite;
+}
+.glowing-border-card2::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            60deg,
+            #5073b8,
+            #1098ad,
+            #07b39b,
+            #6fba82,
+            #f79533,
+            #f37055,
+            #ef4e7b,
+            #a166ab
+    );
+    background-size: 300% 300%;
+    border-radius: inherit;
+    z-index: -1;
+    animation: rotateBackground 4s linear infinite;
+}
+.glowing-border-card3::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            60deg,
+            #6d4c41,
+            #827717,
+            #b35832,
+            #ffb300,
+            #455a64,
+            #263238
+    );
+    background-size: 300% 300%;
+    border-radius: inherit;
+    z-index: -1;
+    animation: rotateBackground 4s linear infinite;
+}
+.glowing-border-card4::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            60deg,
+            #192c48,
+            #3b5c87,
+            #2a87a1,
+            #004d40,
+            #4a148c,
+            #880e4f
+    );
+    background-size: 300% 300%;
+    border-radius: inherit;
+    z-index: -1;
+    animation: rotateBackground 4s linear infinite;
+}
+.glowing-border-card::after, .glowing-border-card2::after, .glowing-border-card3::after, .glowing-border-card4::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background-color: rgba(0,0,0,1);
+    border-radius: inherit;
+    z-index: -1;
+}
+
+@keyframes rotateBackground {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
