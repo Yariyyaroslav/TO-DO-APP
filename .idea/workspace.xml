@@ -4,36 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29a752a6-f0f5-4d4f-8568-f103de66f1e4" name="Changes" comment="add">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/middleware/auth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/Column.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/Task.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dist/output.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/registerPage/logIn.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/registerPage/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/registerPage/signUp.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/scripts/D&amp;D.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/scripts/all.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/scripts/register.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/326497_account_circle_icon (1).svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/auth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/columns.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/tasks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HomePage/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/output.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainPage/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/mainPage/Main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
-    </list>
+    <list default="true" id="29a752a6-f0f5-4d4f-8568-f103de66f1e4" name="Changes" comment="add a lot" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,7 +83,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1762419316210</updated>
-      <workItem from="1762419317557" duration="73677000" />
+      <workItem from="1762419317557" duration="74194000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <option name="closed" value="true" />
@@ -130,7 +101,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762473297032</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add a lot">
+      <option name="closed" value="true" />
+      <created>1762560072508</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1762560072508</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,6 +117,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add" />
-    <option name="LAST_COMMIT_MESSAGE" value="add" />
+    <MESSAGE value="add a lot" />
+    <option name="LAST_COMMIT_MESSAGE" value="add a lot" />
   </component>
 </project>
