@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 *{padding: 0;margin: 0;border: 0;transition: all, 0.3s, ease}
 
 *,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
@@ -44,7 +45,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 }
 @font-face {
     font-family: 'Montserrat';
-    src: url('../public/fonts/Montserrat-VariableFont_wght.ttf');
+    src: url('/fonts/Montserrat-VariableFont_wght.ttf');
 }
 .logo-style{
     user-select: none;
@@ -53,7 +54,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
     @apply flex flex-col gap-[8px] p-[24px] rounded-[16px];
 }
 .text-style-title{
-    @apply text-text-color-main text-[16px] leading-[150%] font-semibold glow-on-hover;
+    @apply  text-[16px] leading-[150%] font-semibold glow-on-hover;
 }
 .text-style-main{
     @apply text-text-color-main text-[14px] leading-[140%] select-none;
@@ -500,6 +501,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
     animation: gradient-flow 4s linear infinite;
 }
 
+
 .new-column-form, .new-task-form{
     position: absolute;
     max-width: 40%;
@@ -515,6 +517,24 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
     gap: 26px;
     z-index: 4;
 }
+.column{
+    overflow: hidden;
+}
+.task-dragging {
+    opacity: 0.8;
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.task-ghost {
+    opacity: 0.4;
+    background: #444;
+    border: 1px dashed #fff;
+}
+.column-ghost {
+    opacity: 0.3;
+    background: #222;
+    border: 2px dashed #555;
+}
 .backdrop{
     position: fixed;
     top: 0;
@@ -528,4 +548,131 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 
 .input-style-default{
     @apply w-full p-[10px] bg-[rgba(0,0,0,0.71)] border-[1px] border-solid border-text-color-accent rounded-md;
+}
+
+.reg-card{
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.reg-card::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            60deg,
+            #5073b8,
+            #1098ad,
+            #07b39b,
+            #6fba82,
+            #f79533,
+            #f37055,
+            #ef4e7b,
+            #a166ab,
+            #5073b8
+    );
+    background-size: 300% auto;
+    border-radius: inherit;
+    z-index: -4;
+    animation: gradient-flow 4s linear infinite;
+}
+
+.reg-card::after{
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background-color: rgba(0,0,0,1);
+    border-radius: inherit;
+    z-index: -4;
+}
+.reg-button{
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.reg-button::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            60deg,
+            #5073b8,
+            #1098ad,
+            #07b39b,
+            #6fba82,
+            #f79533,
+            #f37055,
+            #ef4e7b,
+            #a166ab,
+            #5073b8
+    );
+    background-size: 300% auto;
+    border-radius: inherit;
+    animation: gradient-flow 4s linear infinite;
+    z-index: -2;
+}
+.reg-button::after{
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background-color: rgba(0,0,0,1);
+    border-radius: inherit;
+    z-index: -1;
+    transition: background-color 0.7s ease;
+}
+.reg-button:hover::after{
+    background-color: rgba(0,0,0,0);
+}
+.body-magic{
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.body-magic::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 150%;
+    height: 150%;
+    background: linear-gradient(
+            60deg,
+            #5073b8,
+            #1098ad,
+            #07b39b,
+            #6fba82,
+            #f79533,
+            #f37055,
+            #ef4e7b,
+            #a166ab,
+            #5073b8
+    );
+    background-size: 300% auto;
+    border-radius: inherit;
+    z-index: -4;
+    animation: gradient-flow 4s linear infinite;
+}
+
+.body-magic::after{
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    background-color: rgba(0,0,0,1);
+    border-radius: inherit;
+    z-index: -4;
 }

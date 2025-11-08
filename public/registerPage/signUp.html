@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../dist/output.css">
+</head>
+<body class="relative bg-black text-white font-[Montserrat] flex flex-col items-center min-h-screen gap-[80px] w-full">
+<header class="w-full px-[100px]">
+    <nav class="p-[15px] m-[15px] flex flex-row items-center justify-between gap-[20px] w-full text-[25px] font-[600]">
+        <div class="text-[35px] logo-style ">
+            RoadMap.com
+        </div>
+        <div class="flex flex-row text-style-big-bold items-center justify-center gap-[50px] w-full">
+            <a href="../index.html" class="glow-on-hover">Home</a>
+            <a href="../mainPage/Main.html" class="glow-on-hover">RoadMap</a>
+            <a class="glow-on-hover">Priority Board</a>
+            <a class="glow-on-hover">Settings</a>
+
+        </div>
+        <a href="" class="glow-on-hover flex flex-row gap-[10px]">
+            <span class="text-style-main overflow-hidden text-right" id="nameHeader"></span>
+            <img class="w-[140px] h-[40px]"  src="../src/326497_account_circle_icon%20(1).svg" alt="account">
+        </a>
+    </nav>
+</header>
+<main class="w-full flex flex-col items-center justify-center gap-[50px]">
+    <div class="flex flex-col max-w-[60%] w-full items-center justify-center reg-card p-[35px] rounded-lg">
+        <div class="w-full flex flex-col items-center justify-center gap-[20px]">
+            <div>
+                <img class="w-[100px] h-[100px]" src="../src/326497_account_circle_icon%20(1).svg" alt="account">
+            </div>
+            <h3 class="text-style-big-bold">Your personal information:</h3>
+            <h2 class="text-style-title text-red-600 errEx" style="display: none">The User is already exists</h2>
+            <form action="#" id="signUpForm" class="flex flex-col gap-[20px] flex-shrink-0 w-[60%]">
+                <div class="flex flex-col gap-[16px]">
+                    <label for="Username" class="flex flex-col gap-[16px]">
+                        <span class="text-style-title">Name</span>
+                    </label>
+                    <input class="input-style-default" type="text" id="Username" name="Username" placeholder="Username" required>
+                </div>
+                <div class="flex flex-col gap-[16px]">
+                    <label for="Useremail"  class="flex flex-col gap-[16px]">
+                        <span class="text-style-title">Email</span>
+                    </label>
+                    <input class="input-style-default" type="email" placeholder="example123@gmail.com" name="Useremail" id="Useremail" required>
+                </div>
+                <div class="flex flex-col gap-[16px]">
+                    <label for="password"  class="flex flex-col gap-[16px]">
+                        <span class="text-style-title">Pass</span>
+                    </label>
+                    <input class="input-style-default" type="password" name="password" id="password" required>
+                </div>
+                <button type="submit" class="self-end bg-green-600 px-[1em] py-[0.7em] rounded-md hover:bg-green-700">Submit</button>
+            </form>
+        </div>
+    </div>
+</main>
+<footer class="py-6 mt-16 border-t border-gray-800 text-center">
+    <p class="text-sm text-gray-500">
+        &copy; 2025 RoadMap.com. All Rights Reserved.
+    </p>
+</footer>
+<script src="../scripts/register.js"></script>
+<script src="/scripts/all.js"></script>
+</body>
+</html>

@@ -8,17 +8,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body class="bg-black text-white font-[Montserrat] flex flex-col items-center min-h-screen gap-[240px] w-full">
-<header class="bg-[rgba(0,0,0,0.51)] w-full backdrop-blur-sm sticky top-0 z-10 ">
-    <nav class="p-[30px] flex flex-row items-center justify-start gap-[70px] w-full text-[25px] font-[600]">
-        <div class="text-[35px] logo-style">
+<header class="w-full px-[100px]">
+    <nav class="p-[15px] m-[15px] flex flex-row items-center justify-between gap-[20px] w-full text-[25px] font-[600]">
+        <div class="text-[35px] logo-style ">
             RoadMap.com
         </div>
-        <div class="flex flex-row px-[180px] text-style-big-bold items-center justify-between gap-[50px] w-full">
-            <a class="glow-on-hover">Home</a>
-            <a class="glow-on-hover">RoadMap</a>
+        <div class="flex flex-row text-style-big-bold items-center justify-center gap-[50px] w-full">
+            <a href="#" class="glow-on-hover">Home</a>
+            <a href="/mainPage/Main.html" class="glow-on-hover">RoadMap</a>
             <a class="glow-on-hover">Priority Board</a>
             <a class="glow-on-hover">Settings</a>
+
         </div>
+        <a href="" class="glow-on-hover flex flex-row gap-[10px]">
+            <span class="text-style-main overflow-hidden text-right" id="nameHeader"></span>
+            <img class="w-[140px] h-[40px]"  src="../src/326497_account_circle_icon%20(1).svg" alt="account">
+        </a>
     </nav>
 </header>
 <main class="w-full flex flex-col items-center justify-center gap-[220px]">
@@ -28,7 +33,7 @@
             CRUSH YOUR GOALS.</h1>
             <h3 class="text-[24px] font-semibold">The intuitive way to plan, track, and execute your projects.</h3>
         </div>
-            <button class="glowing-border-button">START YOUR JOURNEY</button>
+            <a href="registerPage/register.html" class="glowing-border-button">START YOUR JOURNEY</a>
     </section>
     <section class="section-style" id="trigger">
         <div class="flex flex-col items-center justify-center gap-[80px]">
@@ -98,7 +103,7 @@
     <section class="section-style">
         <h2 class="text-[48px] font-bold text-center">Stop the Chaos. Start Your Journey Today.</h2>
         <p class="text-style-main">The intuitive way to plan, track, and execute your projects. Ready to try?</p>
-        <button class="text-style-big-bold button-card step-card">Start your journey NOW</button>
+        <a href="registerPage/register.html" class="text-style-big-bold text-text-color-main button-card reg-button p-[60px] rounded-[16px]">Start your journey NOW</a>
     </section>
 </main>
 <footer class=" py-6 mt-16 border-t border-gray-800 text-center">
@@ -106,6 +111,7 @@
         &copy; 2025 RoadMap.com. All Rights Reserved.
     </p>
 </footer>
-<script src="../scripts/home.js"></script>
+<script src="/scripts/home.js"></script>
+<script src="/scripts/all.js"></script>
 </body>
 </html>
