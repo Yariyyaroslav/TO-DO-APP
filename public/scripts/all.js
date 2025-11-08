@@ -1,5 +1,4 @@
 const nameHeader = document.getElementById("nameHeader");
-let user = localStorage.getItem("user");
 const token = localStorage.getItem("token");
 let userData;
 async function getUserInfo(){
@@ -23,8 +22,7 @@ async function getUserInfo(){
         }else{
             nameHeader.innerHTML = `Welcome!`;
         }
-        console.log(userData);
-
+        return userData;
     }catch(err){
         console.log(err);
     }

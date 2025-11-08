@@ -3,9 +3,11 @@ const columnDiv = document.getElementById("columnDiv");
 const newColumnForm = document.querySelector('.new-column-form');
 const newTaskForm = document.querySelector('.new-task-form');
 const updateTaskForm = document.querySelector('.update-task-form');
+const updateColumnForm = document.querySelector('.update-column-form');
 const backdrop = document.querySelector('.backdrop');
 const newTaskData = document.getElementById("newTaskData");
 const updateTaskData = document.getElementById("UpdateTaskData");
+const updateColumnData = document.getElementById("UpdateColumnData");
 const newColumnData = document.getElementById("newColumnData");
 let currentColumnElement = null;
 let currentColumnId = null;
@@ -231,10 +233,10 @@ newTaskData.addEventListener('submit', async(e) => {
 function createColumn(title, color, description, column_id) {
     const wrapper = document.createElement("div");
     wrapper.innerHTML = `
-<div data-description="${description || ''}" data-column-id="${column_id}" class="column flex flex-col justify-center gap-[16px] flex-shrink-0 p-[24px] bg-[#262626] max-w-[348px] w-full rounded-[16px]  border-t-4 border-solid" style="border-top-color: ${color}">
+<div data-description="${description || ''}" data-column-id="${column_id}" class="column flex flex-col justify-center gap-[16px] flex-shrink-0 p-[24px] bg-[#262626] max-w-[348px] w-full rounded-[16px]  border-t-4 border-solid max-h-[100%]" style="border-top-color: ${color}">
         <div class="flex flex-row justify-between items-center">
         <div>
-            <span class="text-style-large-bold">${title}</span>
+            <span class="text-style-large-bold title">${title}</span>
         </div>
         <button class="menuBtnTaskColumn w-[24px] flex self-start">
                 <img src="../src/9023500_dots_three_outline_fill_icon.svg" alt="menu">
@@ -301,6 +303,8 @@ let currentChangeTask;
 let currentChangeMenu;
 let currentChangeMenuColumn;
 let currentChangeColumn;
+let currentColumn;
+let currentColumnElementUpdate;
 document.addEventListener('DOMContentLoaded', () => {
     columnDiv.addEventListener('click', async(e) =>{
         if(e.target.closest('.menuBtnTask')) {
@@ -356,6 +360,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const wasOpen = changeMenu.style.display === 'flex';
             currentChangeColumn = column
             currentChangeMenuColumn = changeMenu;
+            currentColumn = column.dataset.columnId
+            currentColumnElementUpdate = column;
             document.querySelectorAll('.change-window-column').forEach((el) => {
                 el.style.display = 'none';
                 el.closest('.column').style.zIndex = '1';
@@ -365,8 +371,92 @@ document.addEventListener('DOMContentLoaded', () => {
                 column.style.zIndex =  '10';
             }
         }
+        if(e.target.closest('.deleteMenuColumn')) {
+            const column = e.target.closest('.column');
+            const token = localStorage.getItem('token');
+            try{
+                const res = await fetch('/api/columns/delete', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'token': token
+                    },
+                    body: JSON.stringify({
+                        columnId: currentColumn,
+                    })
+                })
+                if(res.status === 200){
+                    column.remove();
+                }
+            }catch(err){
+                console.error(err);
+            }
+        }
+        if(e.target.closest('.editMenuColumn')) {
+            const column = e.target.closest('.column');
+            updateColumnForm.style.display = 'flex';
+            currentChangeMenuColumn.style.display = 'none';
+            backdrop.style.display = 'block';
+            column.style.zIndex =  '1';
+        }
     })
 })
+updateColumnForm.addEventListener('submit', async(e) =>{
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+    const data = new FormData(updateColumnData);
+    const title = data.get('updatenameColumn');
+    const color = data.get('updatecolorColumn');
+    const description = data.get('updatedescriptionColumn');
+    try{
+        const res = await fetch('/api/columns/update', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token
+            },
+            body: JSON.stringify({
+                columnId: currentColumn,
+                title: title,
+                color: color,
+                description: description,
+            })
+        })
+        if(res.status === 200){
+            await updateColumn(currentColumn);
+            updateColumnForm.style.display = 'none';
+            backdrop.style.display = 'none';
+            updateColumnData.reset();
+        }
+    }catch(err){
+        console.error(err);
+    }
+})
+async function updateColumn(columnId){
+    const token = localStorage.getItem('token');
+    let data;
+    try{
+        const res = await fetch(`/api/columns/column/${columnId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token
+            }
+        })
+        data = await res.json();
+    }catch(err){
+        console.error(err);
+    }
+    console.log(data);
+    const column = columnDiv.querySelector(`[data-column-id="${currentColumn}"]`)
+    console.log(column);
+    if(!column){
+        return;
+    }
+    column.querySelector('.title').innerText = data.title;
+    column.dataset.description = data.description;
+    column.style.borderTopColor = data.color;
+}
 updateTaskForm.addEventListener('submit', async(e) =>{
     e.preventDefault();
     const token = localStorage.getItem('token');

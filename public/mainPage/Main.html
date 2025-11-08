@@ -15,7 +15,7 @@
             <a href="../index.html" class="glow-on-hover">Home</a>
             <a href="../mainPage/Main.html" class="glow-on-hover">RoadMap</a>
             <a class="glow-on-hover">Priority Board</a>
-            <a class="glow-on-hover">Settings</a>
+            <a href="../profilePage/profile.html" class="glow-on-hover">Settings</a>
 
        </div>
         <a href="" class="glow-on-hover flex flex-row gap-[10px]">
@@ -24,8 +24,8 @@
         </a>
     </nav>
 </header>
-<main class="w-full flex flex-col items-center justify-center gap-[50px]">
-    <div id="columnDiv" class="flex flex-row items-start justify-center gap-[24px]">
+<main class="w-full max-w-[80%] h-[100vh] flex flex-col items-start justify-start gap-[50px] overflow-x-scroll">
+    <div id="columnDiv" class="w-full flex flex-row items-start justify-start gap-[24px]">
         <div class="order-9999 button-plus-on-hover text-center self-start mx-[7px] my-[20px] border-[1px] border-dashed border-[#2A2A2A] rounded-md">
             <button id="addColumn" class="button-style-main glow-on-hover">+</button>
         </div>
@@ -104,6 +104,30 @@
                 <span class="text-style-title">Description</span>
             </label>
             <textarea id="updatedescriptionTask" rows="5" name="updatedescriptionTask" class="input-style-default"></textarea>
+        </div>
+        <button type="submit" class="self-end bg-green-600 px-[1em] py-[0.7em] rounded-md hover:bg-green-700">Submit</button>
+    </form>
+</section>
+<section class="update-column-form" style="display: none;">
+    <h3 class="text-style-big-bold">Update column</h3>
+    <form action="#" id="UpdateColumnData" class="flex flex-col gap-[20px]">
+        <div class="flex flex-col gap-[16px]">
+            <label for="updatenameColumn" class="flex flex-col gap-[16px]">
+                <span class="text-style-title">Label text</span>
+            </label>
+            <input class="input-style-default" type="text" id="updatenameColumn" name="updatenameColumn" placeholder="Name" required>
+        </div>
+        <div class="flex flex-col gap-[16px]">
+            <label for="updatecolorColumn"  class="flex flex-col gap-[16px]">
+                <span class="text-style-title">Label color</span>
+            </label>
+            <input class="w-[50px] h-[40px] p-[5px] bg-[rgba(0,0,0,0.71)] border-[1px] border-solid border-text-color-accent rounded-md" type="color" name="updatecolorColumn" id="updatecolorColumn" value="#000000">
+        </div>
+        <div class="flex flex-col gap-[16px]">
+            <label for="updatedescriptionColumn"  class="flex flex-col gap-[16px]">
+                <span class="text-style-title">Description</span>
+            </label>
+            <textarea id="updatedescriptionColumn" rows="5" name="updatedescriptionColumn" class="input-style-default"></textarea>
         </div>
         <button type="submit" class="self-end bg-green-600 px-[1em] py-[0.7em] rounded-md hover:bg-green-700">Submit</button>
     </form>

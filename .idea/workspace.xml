@@ -4,19 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29a752a6-f0f5-4d4f-8568-f103de66f1e4" name="Changes" comment="add a lot">
-      <change afterPath="$PROJECT_DIR$/public/src/352547_edit_mode_icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/7853766_trash_kashifarif_delete_remove_recycle_icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/9023500_dots_three_outline_fill_icon.svg" afterDir="false" />
+    <list default="true" id="29a752a6-f0f5-4d4f-8568-f103de66f1e4" name="Changes" comment=".">
+      <change afterPath="$PROJECT_DIR$/public/profilePage/profile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/scripts/profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Task.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Task.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/dist/output.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist/output.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mainPage/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/mainPage/Main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/D&amp;D.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/D&amp;D.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/all.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/all.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/register.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/columns.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/tasks.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/tasks.js" afterDir="false" />
     </list>
@@ -103,7 +99,7 @@
       <option name="presentableId" value="Default" />
       <updated>1762419316210</updated>
       <workItem from="1762419317557" duration="74628000" />
-      <workItem from="1762607185679" duration="21240000" />
+      <workItem from="1762607185679" duration="30181000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <option name="closed" value="true" />
@@ -129,7 +125,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762560072508</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary=".">
+      <option name="closed" value="true" />
+      <created>1762636463786</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1762636463786</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,6 +142,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add" />
     <MESSAGE value="add a lot" />
-    <option name="LAST_COMMIT_MESSAGE" value="add a lot" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>

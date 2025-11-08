@@ -70,7 +70,7 @@ router.delete('/delete', auth, async (req, res) => {
         if (!taskId) {
             return;
         }
-        await Task.deleteOne({_id: taskId});
+        await Task.deleteOne({_id: taskId, user: req.user.id});
         res.json(200);
     }catch(err){
         console.error(err.message);
