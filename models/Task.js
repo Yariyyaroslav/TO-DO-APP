@@ -18,7 +18,12 @@ const TaskSchema = new mongoose.Schema({
     },
     color: {
         type: String
+    },
+    order: {
+        type: Number,
+        default: 0
     }
+
 }, { timestamps: true });
 
 module.exports = mongoose.model('Task', TaskSchema);

@@ -14,17 +14,18 @@ router.post('/', auth, async (req, res) => {
         if (column.user.toString() !== req.user.id) {
             return;
         }
-
+        const taskCount = await Task.countDocuments({column: columnId});
         const newTask = new Task({
             title,
             description,
             color,
             column: columnId,
+            order: taskCount,
             user: req.user.id
         });
 
         const task = await newTask.save();
-
+        res.json(task);
     } catch (err) {
         console.error(err.message);
     }
@@ -38,7 +39,7 @@ router.get('/column/:columnId', auth, async (req, res) => {
             return;
         }
 
-        const tasks = await Task.find({ column: req.params.columnId }).sort({ createdAt: 1 });
+        const tasks = await Task.find({ column: req.params.columnId }).sort({ order: 1 });
         res.json(tasks);
 
     } catch (err) {
@@ -46,30 +47,60 @@ router.get('/column/:columnId', auth, async (req, res) => {
     }
 });
 
-router.put('/:taskId/move', auth, async (req, res) => {
+router.put('/reorder', auth, async (req, res) => {
+    const {columnId, taskIds} = req.body;
     try{
-        const {newColumnId} = req.body;
-        let task = await Task.findById(req.params.taskId)
+        const updateOrder = taskIds.map((taskId, index) => {
+            return Task.updateOne(
+                { _id: taskId, user: req.user.id },
+                { column: columnId, order:index},
+            );
+        });
+        await Promise.all(updateOrder);
+        res.json(updateOrder);
+    }catch(err){
+        console.error(err.message);
+    }
+})
 
-        if (!task) {
-            console.error('Task not found')
+router.delete('/delete', auth, async (req, res) => {
+    const { taskId } = req.body;
+
+    try{
+        if (!taskId) {
             return;
         }
-        let newColumn = await Column.findById(newColumnId)
+        await Task.deleteOne({_id: taskId});
+        res.json(200);
+    }catch(err){
+        console.error(err.message);
+    }
 
-        if (!newColumn) {
-            console.error('Task not found')
+})
+
+router.put('/update', auth, async (req, res) => {
+    const {taskId, title, color, description} = req.body;
+    try{
+        if (!taskId) {
             return;
         }
-
-        if (newColumn.user.toString() !== req.user.id) {
-            console.error('not autorised')
+        const updateTask = await Task.updateOne(
+            { _id: taskId, user: req.user.id },
+            {title: title, color: color, description: description},
+        )
+        res.status(200).json(updateTask);
+    }catch(err){
+        console.error(err.message);
+    }
+})
+router.get('/task/:taskId', auth, async (req, res) => {
+    const {taskId} = req.params;
+    try{
+        if (!taskId) {
             return;
         }
-        task.column = newColumnId;
-        await task.save();
-        res.json(task);
-
+        const task = await Task.findById(taskId)
+        res.status(200).json(task);
     }catch(err){
         console.error(err.message);
     }

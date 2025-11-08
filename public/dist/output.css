@@ -606,6 +606,10 @@ video {
   }
 }
 
+.absolute {
+  position: absolute;
+}
+
 .relative {
   position: relative;
 }
@@ -660,6 +664,18 @@ video {
   width: 140px;
 }
 
+.w-\[150px\] {
+  width: 150px;
+}
+
+.w-\[20px\] {
+  width: 20px;
+}
+
+.w-\[24px\] {
+  width: 24px;
+}
+
 .w-\[50px\] {
   width: 50px;
 }
@@ -706,6 +722,10 @@ video {
 
 .items-center {
   align-items: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
 }
 
 .justify-center {
@@ -788,6 +808,10 @@ video {
   border-width: 1px;
 }
 
+.border-b-\[1px\] {
+  border-bottom-width: 1px;
+}
+
 .border-t {
   border-top-width: 1px;
 }
@@ -824,6 +848,11 @@ video {
   border-color: rgb(89 89 89 / var(--tw-border-opacity, 1));
 }
 
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+}
+
 .bg-\[\#262626\] {
   --tw-bg-opacity: 1;
   background-color: rgb(38 38 38 / var(--tw-bg-opacity, 1));
@@ -836,6 +865,11 @@ video {
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
+}
+
+.bg-gray-950 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(3 7 18 / var(--tw-bg-opacity, 1));
 }
 
 .bg-green-600 {
@@ -873,6 +907,11 @@ video {
   padding-right: 1em;
 }
 
+.px-\[20px\] {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
@@ -881,6 +920,11 @@ video {
 .py-\[0\.7em\] {
   padding-top: 0.7em;
   padding-bottom: 0.7em;
+}
+
+.py-\[10px\] {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .text-center {
@@ -938,6 +982,11 @@ video {
 
 .leading-\[150\%\] {
   line-height: 150%;
+}
+
+.text-\[\#E32636\] {
+  --tw-text-opacity: 1;
+  color: rgb(227 38 54 / var(--tw-text-opacity, 1));
 }
 
 .text-gray-500 {
@@ -1054,6 +1103,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .task-style {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -1602,7 +1652,7 @@ h1,h2,h3,h4,h5,h6{
   animation: gradient-flow 4s linear infinite;
 }
 
-.new-column-form, .new-task-form{
+.new-column-form, .new-task-form, .update-task-form{
   position: absolute;
   max-width: 40%;
   width: 100%;
@@ -1620,6 +1670,7 @@ h1,h2,h3,h4,h5,h6{
 
 .column{
   overflow: hidden;
+  position: relative;
 }
 
 .task-dragging {
@@ -1796,7 +1847,45 @@ h1,h2,h3,h4,h5,h6{
   z-index: -4;
 }
 
+.menuBtnTask{
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.task-style:hover .menuBtnTask{
+  opacity: 1;
+}
+
+.change-window{
+  transform: translate(-50%,-50%);
+  top: 100%;
+  right: -9%;
+}
+
+.change-window-column{
+  transform: translate(-50%,-50%);
+  top: 30%;
+  right: -8%;
+  z-index: 11;
+}
+
+.menuBtnTaskColumn{
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.column:hover .menuBtnTaskColumn{
+  opacity: 1;
+}
+
+.hover\:bg-gray-800:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
+}
+
 .hover\:bg-green-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(21 128 61 / var(--tw-bg-opacity, 1));
 }
+
+

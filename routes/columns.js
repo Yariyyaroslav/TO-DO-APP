@@ -15,7 +15,7 @@ router.post('/', auth, async (req, res) => {
         });
 
         const column = await newColumn.save();
-
+        res.json(column);
     } catch (err) {
         console.error(err.message);
         return;
@@ -36,17 +36,20 @@ router.put('/order', auth, async (req, res) => {
     try{
         const { columnIds } = req.body;
         const updateOrder = columnIds.map((columnId, index) => {
-            return Column.updateOne(columnId,
+            return Column.updateOne(
                 {user: req.user.id, _id: columnId},
-                {order: index}
+                {$set: {order:index}}
             )
 
         });
         await Promise.all(updateOrder);
+        res.json(updateOrder);
     }catch(err){
         console.error(err.message);
         return;
     }
 })
+
+
 
 module.exports = router;

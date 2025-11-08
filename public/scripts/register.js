@@ -10,6 +10,8 @@ if (regForm) {
         const password = document.getElementById('password').value;
         const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!re.test(String(email).toLowerCase())) {
+            errEx.style.display = 'block';
+            errEx.innerHTML = 'Please enter valid email';
             console.error("Please enter valid email");
             return;
         }
@@ -36,6 +38,7 @@ if (regForm) {
         }
     })
 }
+const errEx = document.querySelector('.errEx');
 const errH = document.querySelector('.errPass')
 const logForm = document.getElementById("loginInForm");
 if (logForm) {

@@ -61,7 +61,7 @@
     </form>
 </section>
 <section class="new-task-form" style="display: none;">
-    <h3 class="text-style-big-bold">Create new column</h3>
+    <h3 class="text-style-big-bold">Create new task</h3>
     <form action="#" id="newTaskData" class="flex flex-col gap-[20px]">
         <div class="flex flex-col gap-[16px]">
             <label for="nameTask" class="flex flex-col gap-[16px]">
@@ -80,6 +80,30 @@
                 <span class="text-style-title">Description</span>
             </label>
             <textarea id="descriptionTask" rows="5" name="descriptionTask" class="input-style-default"></textarea>
+        </div>
+        <button type="submit" class="self-end bg-green-600 px-[1em] py-[0.7em] rounded-md hover:bg-green-700">Submit</button>
+    </form>
+</section>
+<section class="update-task-form" style="display: none;">
+    <h3 class="text-style-big-bold">Update task</h3>
+    <form action="#" id="UpdateTaskData" class="flex flex-col gap-[20px]">
+        <div class="flex flex-col gap-[16px]">
+            <label for="updatenameTask" class="flex flex-col gap-[16px]">
+                <span class="text-style-title">Label text</span>
+            </label>
+            <input class="input-style-default" type="text" id="updatenameTask" name="updatenameTask" placeholder="Name" required>
+        </div>
+        <div class="flex flex-col gap-[16px]">
+            <label for="updatecolorTask"  class="flex flex-col gap-[16px]">
+                <span class="text-style-title">Label color</span>
+            </label>
+            <input class="w-[50px] h-[40px] p-[5px] bg-[rgba(0,0,0,0.71)] border-[1px] border-solid border-text-color-accent rounded-md" type="color" name="updatecolorTask" id="updatecolorTask" value="#000000">
+        </div>
+        <div class="flex flex-col gap-[16px]">
+            <label for="updatedescriptionTask"  class="flex flex-col gap-[16px]">
+                <span class="text-style-title">Description</span>
+            </label>
+            <textarea id="updatedescriptionTask" rows="5" name="updatedescriptionTask" class="input-style-default"></textarea>
         </div>
         <button type="submit" class="self-end bg-green-600 px-[1em] py-[0.7em] rounded-md hover:bg-green-700">Submit</button>
     </form>

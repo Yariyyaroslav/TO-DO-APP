@@ -2,8 +2,10 @@ const addColumn = document.getElementById("addColumn");
 const columnDiv = document.getElementById("columnDiv");
 const newColumnForm = document.querySelector('.new-column-form');
 const newTaskForm = document.querySelector('.new-task-form');
+const updateTaskForm = document.querySelector('.update-task-form');
 const backdrop = document.querySelector('.backdrop');
 const newTaskData = document.getElementById("newTaskData");
+const updateTaskData = document.getElementById("UpdateTaskData");
 const newColumnData = document.getElementById("newColumnData");
 let currentColumnElement = null;
 let currentColumnId = null;
@@ -15,6 +17,12 @@ addColumn.addEventListener("click", () => {
     }
     newColumnForm.style.display = newColumnForm.style.display === 'none' ? 'flex' : 'none';
     backdrop.style.display = backdrop.style.display === 'none' ? 'block' : 'none';
+    if(currentChangeMenu && currentChangeMenu.style.display === 'flex'){
+        currentChangeMenu.style.display = 'none';
+        currentChangeTask.style.zIndex = '1';
+    }
+    currentChangeMenuColumn.style.display = 'none';
+    currentChangeColumn.style.zIndex = '1';
 });
 
 document.addEventListener('click', (e) => {
@@ -31,6 +39,13 @@ document.addEventListener('click', (e) => {
             backdrop.style.display = 'none';
         }
     }
+    if (updateTaskForm.style.display === 'flex') {
+        const isEditButton = e.target.closest('.editMenu');
+        if(!updateTaskForm.contains(e.target) && !isEditButton) {
+            updateTaskForm.style.display = 'none';
+            backdrop.style.display = 'none';
+        }
+    }
 });
 
 columnDiv.addEventListener('click', (e) => {
@@ -38,6 +53,14 @@ columnDiv.addEventListener('click', (e) => {
     if (newTaskButton) {
         newTaskForm.style.display = 'flex';
         backdrop.style.display = 'block';
+        if(currentChangeMenu && currentChangeMenu.style.display === 'flex') {
+            currentChangeMenu.style.display = 'none';
+            currentChangeTask.style.zIndex = '1';
+        }
+        if(currentChangeMenuColumn && currentChangeMenuColumn.style.display === 'flex') {
+            currentChangeMenuColumn.style.display = 'none';
+            currentChangeColumn.style.zIndex = '1';
+        }
         currentColumnElement = newTaskButton.closest('.column');
         currentColumnId = currentColumnElement.dataset.columnId;
     }
@@ -171,12 +194,10 @@ newTaskData.addEventListener('submit', async(e) => {
     const title = data.get('nameTask');
     const color = data.get('colorTask');
     const description = data.get('descriptionTask');
-
     const token = localStorage.getItem('token');
     if (!token || !currentColumnId) {
         return;
     }
-
     try{
         const res = await fetch('/api/tasks', {
             method: 'POST',
@@ -186,7 +207,6 @@ newTaskData.addEventListener('submit', async(e) => {
             },
             body: JSON.stringify({ title, color, description, columnId: currentColumnId })
         });
-
         if(!res.ok) {
             console.error('Error server');
             return
@@ -212,16 +232,31 @@ function createColumn(title, color, description, column_id) {
     const wrapper = document.createElement("div");
     wrapper.innerHTML = `
 <div data-description="${description || ''}" data-column-id="${column_id}" class="column flex flex-col justify-center gap-[16px] flex-shrink-0 p-[24px] bg-[#262626] max-w-[348px] w-full rounded-[16px]  border-t-4 border-solid" style="border-top-color: ${color}">
+        <div class="flex flex-row justify-between items-center">
         <div>
             <span class="text-style-large-bold">${title}</span>
         </div>
-        
+        <button class="menuBtnTaskColumn w-[24px] flex self-start">
+                <img src="../src/9023500_dots_three_outline_fill_icon.svg" alt="menu">
+            </button>
+            <div style="display: none" class="absolute change-window-column flex-col justify-center items-center w-[150px] bg-gray-950 rounded-lg border-[1px] border-dashed border-white">
+                <div class="editMenuColumn flex flex-row gap-[16px] items-center justify-start w-full rounded-lg px-[20px] py-[10px] border-b-[1px] border-dashed border-white hover:bg-gray-800 cursor-pointer">
+                     <img class="w-[20px]" src="../src/352547_edit_mode_icon.svg" alt="edit">
+                     <span class="text-style-title">Edit</span>
+                </div>
+                <div class="deleteMenuColumn flex flex-row gap-[16px] items-center justify-start w-full rounded-lg px-[20px] py-[10px] hover:bg-gray-800 cursor-pointer">
+                     <img class="w-[20px]" src="../src/7853766_trash_kashifarif_delete_remove_recycle_icon.svg" alt="edit">
+                     <span class="text-style-title text-[#E32636]">Delete</span>
+                </div>
+            </div>
+</div>
         <div class="tasks-container flex flex-col gap-[16px]">
         </div>
         
         <div class="newTask order-9999 border-dashed button-plus-on-hover border-[1px] border-[#595959] p-[24px] rounded-[16px] cursor-pointer">
             <button class="text-[16px] button-style-task glow-on-hover text-text-color-accent leading-[150%] font-semibold cursor-pointer">+ New Task</button>
         </div>
+        
 </div> `;
 
     const columnElement = wrapper.firstElementChild;
@@ -231,11 +266,24 @@ function createColumn(title, color, description, column_id) {
 
 function createTask(title, color, description, taskId, currentColumn) {
     const wrapper = document.createElement("div");
-    wrapper.innerHTML = `<div class="task-style" data-id="${taskId}" style="background-color:${color}">
-    <span class="text-style-title">${title}</span>
-    <p class="text-style-main">${description || ''}</p>
-    </div>`;
-
+    wrapper.innerHTML = `<div class="task-style relative" data-id="${taskId}" style="background-color:${color}">
+    <div class="flex flex-row justify-between items-center">
+        <span class="text-style-title title">${title}</span>
+        <div> 
+            <button class="menuBtnTask w-[24px] flex self-start">
+                <img src="../src/9023500_dots_three_outline_fill_icon.svg" alt="menu">
+            </button>
+            <div style="display: none" class="absolute change-window flex-col justify-center items-center w-[150px] bg-gray-950 rounded-lg border-[1px] border-dashed border-white">
+                <div class="editMenu flex flex-row gap-[16px] items-center justify-start w-full rounded-lg px-[20px] py-[10px] border-b-[1px] border-dashed border-white hover:bg-gray-800 cursor-pointer">
+                     <img class="w-[20px]" src="../src/352547_edit_mode_icon.svg" alt="edit">
+                     <span class="text-style-title">Edit</span>
+                </div>
+                <div class="deleteMenu flex flex-row gap-[16px] items-center justify-start w-full rounded-lg px-[20px] py-[10px] hover:bg-gray-800 cursor-pointer">
+                     <img class="w-[20px]" src="../src/7853766_trash_kashifarif_delete_remove_recycle_icon.svg" alt="edit">
+                     <span class="text-style-title text-[#E32636]">Delete</span>
+                </div>
+            </div> </div> </div> <p class="text-style-main description">${description || ''}</p> 
+</div>`;
     const taskElement = wrapper.firstElementChild;
 
     if(currentColumn){
@@ -248,3 +296,134 @@ function createTask(title, color, description, taskId, currentColumn) {
     }
     return taskElement;
 }
+let currentTask;
+let currentChangeTask;
+let currentChangeMenu;
+let currentChangeMenuColumn;
+let currentChangeColumn;
+document.addEventListener('DOMContentLoaded', () => {
+    columnDiv.addEventListener('click', async(e) =>{
+        if(e.target.closest('.menuBtnTask')) {
+            const btn = e.target.closest('.menuBtnTask');
+            const task = btn.closest('.task-style')
+            const changeMenu = task.querySelector('.change-window');
+            const wasOpen = changeMenu.style.display === 'flex';
+            currentChangeTask = task;
+            document.querySelectorAll('.change-window').forEach((el) => {
+                el.style.display = 'none';
+                el.closest('.task-style').style.zIndex = '1';
+            })
+            currentChangeMenu = changeMenu;
+            if (!wasOpen) {
+                changeMenu.style.display = 'flex';
+                task.style.zIndex =  '10';
+            }
+        }
+        if(e.target.closest('.deleteMenu')) {
+            const task = e.target.closest('.task-style');
+            const token = localStorage.getItem('token');
+            const taskId = task.dataset.id;
+            try{
+                const res = await fetch('/api/tasks/delete', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'token': token
+                    },
+                    body: JSON.stringify({
+                        taskId: taskId,
+                    })
+                })
+                if(res.status === 200){
+                    task.remove();
+                }
+            }catch(err){
+                console.error(err);
+            }
+        }
+        if(e.target.closest('.editMenu')) {
+            const task = e.target.closest('.task-style');
+            currentTask = task.dataset.id;
+            updateTaskForm.style.display = 'flex';
+            currentChangeMenu.style.display = 'none';
+            backdrop.style.display = 'block';
+            task.style.zIndex =  '1';
+        }
+        if(e.target.closest('.menuBtnTaskColumn')) {
+            const btn = e.target.closest('.menuBtnTaskColumn');
+            const column = btn.closest('.column')
+            const changeMenu = column.querySelector('.change-window-column');
+            const wasOpen = changeMenu.style.display === 'flex';
+            currentChangeColumn = column
+            currentChangeMenuColumn = changeMenu;
+            document.querySelectorAll('.change-window-column').forEach((el) => {
+                el.style.display = 'none';
+                el.closest('.column').style.zIndex = '1';
+            })
+            if (!wasOpen) {
+                changeMenu.style.display = 'flex';
+                column.style.zIndex =  '10';
+            }
+        }
+    })
+})
+updateTaskForm.addEventListener('submit', async(e) =>{
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+    const data = new FormData(updateTaskData);
+    const title = data.get('updatenameTask');
+    const color = data.get('updatecolorTask');
+    const description = data.get('updatedescriptionTask');
+    try{
+        const res = await fetch('/api/tasks/update', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token
+            },
+            body: JSON.stringify({
+                taskId: currentTask,
+                title: title,
+                color: color,
+                description: description,
+            })
+        })
+        if(res.status === 200){
+            updateTask(currentTask);
+            updateTaskForm.style.display = 'none';
+            currentChangeMenu.style.display = 'none';
+            backdrop.style.display = 'none';
+        }
+    }catch(err){
+        console.error(err);
+    }
+})
+async function updateTask(taskId){
+    const token = localStorage.getItem('token');
+    let data;
+    try{
+        const res = await fetch(`/api/tasks/task/${taskId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token
+            }
+        })
+        data = await res.json();
+    }catch(err){
+        console.error(err);
+    }
+    console.log(data);
+    const task = columnDiv.querySelector(`[data-id="${taskId}"]`)
+    console.log(task);
+    if(!task){
+        return;
+    }
+    task.querySelector('.title').innerText = data.title;
+    task.querySelector('.description').innerText = data.description;
+    task.style.backgroundColor = data.color;
+}
+document.addEventListener('click', (e) =>{
+    console.log(e.target)
+
+})

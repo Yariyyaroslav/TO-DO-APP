@@ -51,7 +51,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
     user-select: none;
 }
 .task-style{
-    @apply flex flex-col gap-[8px] p-[24px] rounded-[16px];
+    @apply flex flex-col gap-[8px] p-[24px] rounded-[16px] relative;
 }
 .text-style-title{
     @apply  text-[16px] leading-[150%] font-semibold glow-on-hover;
@@ -502,7 +502,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 }
 
 
-.new-column-form, .new-task-form{
+.new-column-form, .new-task-form, .update-task-form{
     position: absolute;
     max-width: 40%;
     width: 100%;
@@ -519,6 +519,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 }
 .column{
     overflow: hidden;
+    position: relative;
 }
 .task-dragging {
     opacity: 0.8;
@@ -676,3 +677,32 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
     border-radius: inherit;
     z-index: -4;
 }
+
+.menuBtnTask{
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+.task-style:hover .menuBtnTask{
+    opacity: 1;
+}
+
+.change-window{
+    transform: translate(-50%,-50%);
+    top: 100%;
+    right: -9%;
+}
+.change-window-column{
+    transform: translate(-50%,-50%);
+    top: 30%;
+    right: -8%;
+    z-index: 11;
+}
+.menuBtnTaskColumn{
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+.column:hover .menuBtnTaskColumn{
+    opacity: 1;
+}
+
+

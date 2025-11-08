@@ -10,8 +10,15 @@ function initSortable(taskContainer){
             const newColumnElement = e.to.closest('.column')
             const newColumnId = newColumnElement.dataset.columnId;
             const oldColumnElement = e.from.closest('.column');
-
-            updateTaskColumn(taskId, newColumnId);
+            const taskElem = newColumnElement.querySelectorAll('.task-style');
+            const taskIds = Array.from(taskElem).map(taskElem => taskElem.dataset.id);
+                updateTaskOrder(newColumnId, taskIds);
+                if (newColumnElement !== oldColumnElement) {
+                    const oldColumnId = oldColumnElement.dataset.columnId;
+                    const oldTaskElements = oldColumnElement.querySelectorAll('.task-style');
+                    const oldTaskIds = Array.from(oldTaskElements).map(task => task.dataset.id);
+                    updateTaskOrder(oldColumnId, oldTaskIds);
+                }
             gsap.to([oldColumnElement, newColumnElement], {
                 duration: 0.5,
                 height: "auto",
@@ -25,31 +32,35 @@ function initSortable(taskContainer){
     });
 }
 
-async function updateTaskColumn(taskId, newColumnId){
+async function updateTaskOrder(columnId, taskIds){
     const token = localStorage.getItem("token");
     if(!token){
         window.location.href = '../registerPage/register.html';
         return;
     }
+
     try{
-        const res = await fetch(`/api/tasks/${taskId}/move`, {
+        const res = await fetch('/api/tasks/reorder', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
                 'token': token,
             },
             body: JSON.stringify({
-                newColumnId: newColumnId,
+                columnId: columnId,
+                taskIds: taskIds,
             })
         })
         if(!res.ok){
-            console.error('Error while updating task column');
-            return;
+            console.error('Error while updating task order');
         }
+
     }catch(err){
         console.log(err);
     }
+
 }
+
 
 function initColumDrag(){
     Sortable.create(columnDiv, {
