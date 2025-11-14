@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../dist/output.css">
+</head>
+<body class="relative bg-black text-white font-[Montserrat] flex flex-col items-center min-h-screen gap-[80px] w-full h-[100vh] rounded-xl body-magic">
+<header class="w-full px-[100px]">
+    <nav class="p-[15px] m-[15px] flex flex-row items-center justify-between gap-[20px] w-full text-[25px] font-[600]">
+        <div class="text-[35px] logo-style ">
+            RoadMap.com
+        </div>
+        <div class="flex flex-row text-style-big-bold items-center justify-center gap-[50px]">
+            <a href="../index.html" class="glow-on-hover">Home</a>
+            <a href="../mainPage/Main.html" class="glow-on-hover">RoadMap</a>
+            <a href="../priorityBoard/priority.html" class="glow-on-hover">Priority Board</a>
+            <a href="../profilePage/profile.html" class="glow-on-hover">Settings</a>
+
+        </div>
+        <a href="../profilePage/profile.html" class="glow-on-hover cursor-pointer flex flex-row gap-[20px] items-center justify-center">
+            <span class="text-style-main max-w-[125px] overflow-hidden text-right p-[10px]" id="nameHeader"></span>
+            <img class="w-[40px] h-[40px]"  src="../src/326497_account_circle_icon%20(1).svg" alt="account">
+        </a>
+    </nav>
+</header>
+<main class="w-full max-w-[80%] h-[100vh] flex flex-col items-start justify-start gap-[30px] overflow-x-scroll" id="priority">
+
+</main>
+<footer class=" py-6 mt-16 border-t border-gray-800 text-center">
+    <p class="text-sm text-gray-500">
+        &copy; 2025 RoadMap.com. All Rights Reserved.
+    </p>
+</footer>
+<section class="new-task-form" style="display: none;">
+    <h3 class="text-style-big-bold">Create new task</h3>
+    <form action="#" id="newTaskData" class="flex flex-col gap-[20px]">
+        <div class="flex flex-col gap-[16px]">
+            <label for="nameTask" class="flex flex-col gap-[16px]">
+                <span class="text-style-title">Label text</span>
+            </label>
+            <input class="input-style-default" type="text" id="nameTask" name="nameTask" placeholder="Name" required>
+        </div>
+        <div class="flex flex-row justify-between gap-[16px]">
+            <div class="flex flex-col gap-[16px]">
+                <label for="colorTask"  class="flex flex-col gap-[16px]">
+                    <span class="text-style-title">Label color</span>
+                </label>
+                <input class="w-[50px] h-[40px] p-[5px] bg-[rgba(0,0,0,0.71)] border-[1px] border-solid border-text-color-accent rounded-md" type="color" name="colorTask" id="colorTask" value="#000000">
+            </div>
+            <div class="flex flex-col gap-[16px]">
+                <label for="nameTask" class="flex flex-col gap-[16px]">
+                    <span class="text-style-title">Priority</span>
+                </label>
+                <div class="flex flex-row gap-[16px] items-center justify-center">
+                    <span class="text-style-title">P</span>
+                    <input class="input-style-default" type="number" id="priorityTask" name="priorityTask" placeholder="Priority" required>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col gap-[16px]">
+            <label for="descriptionTask"  class="flex flex-col gap-[16px]">
+                <span class="text-style-title">Description</span>
+            </label>
+            <textarea id="descriptionTask" rows="5" name="descriptionTask" class="input-style-default"></textarea>
+        </div>
+        <button type="submit" class="self-end bg-green-600 px-[1em] py-[0.7em] rounded-md hover:bg-green-700">Submit</button>
+    </form>
+</section>
+<section class="update-task-form" style="display: none;">
+    <h3 class="text-style-big-bold">Update task</h3>
+    <form action="#" id="UpdateTaskData" class="flex flex-col gap-[20px]">
+        <div class="flex flex-col gap-[16px]">
+            <label for="updatenameTask" class="flex flex-col gap-[16px]">
+                <span class="text-style-title">Label text</span>
+            </label>
+            <input class="input-style-default" type="text" id="updatenameTask" name="updatenameTask" placeholder="Name" required>
+        </div>
+        <div class="flex flex-row justify-between gap-[16px]">
+            <div class="flex flex-col gap-[16px]">
+                <label for="updatecolorTask"  class="flex flex-col gap-[16px]">
+                    <span class="text-style-title">Label color</span>
+                </label>
+                <input class="w-[50px] h-[40px] p-[5px] bg-[rgba(0,0,0,0.71)] border-[1px] border-solid border-text-color-accent rounded-md" type="color" name="updatecolorTask" id="updatecolorTask" value="#000000">
+            </div>
+            <div class="flex flex-col gap-[16px]">
+                <label for="nameTask" class="flex flex-col gap-[16px]">
+                    <span class="text-style-title">Priority</span>
+                </label>
+                <div class="flex flex-row gap-[16px] items-center justify-center">
+                    <span class="text-style-title">P</span>
+                    <input class="input-style-default" type="number" id="UpdatepriorityTask" name="UpdatepriorityTask" placeholder="Update Priority" required>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col gap-[16px]">
+            <label for="updatedescriptionTask"  class="flex flex-col gap-[16px]">
+                <span class="text-style-title">Description</span>
+            </label>
+            <textarea id="updatedescriptionTask" rows="5" name="updatedescriptionTask" class="input-style-default"></textarea>
+        </div>
+        <button type="submit" class="self-end bg-green-600 px-[1em] py-[0.7em] rounded-md hover:bg-green-700">Submit</button>
+    </form>
+</section>
+<div class="backdrop" style="display: none;"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script src="/scripts/all.js"></script>
+<script src="/scripts/priority.js"></script>
+</body>
+</html>

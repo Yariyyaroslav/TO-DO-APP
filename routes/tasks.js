@@ -106,4 +106,15 @@ router.get('/task/:taskId', auth, async (req, res) => {
         console.error(err.message);
     }
 })
+
+router.get('/getAll', auth, async (req, res) => {
+    const filter = {user: req.user.id};
+    try{
+        const tasks = await Task.find(filter).sort({ priority: 1 });
+        res.json(tasks);
+    }catch(err){
+        console.error(err.message);
+        res.sendStatus(500);
+    }
+})
 module.exports = router;

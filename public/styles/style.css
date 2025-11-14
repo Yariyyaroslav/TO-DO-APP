@@ -742,3 +742,7 @@ body{
     padding: 60px 30px;
     border-radius: 16px;
 }
+
+.priorityBoard{
+    @apply border-[1px] border-[white] border-dashed rounded-xl w-full p-[25px] flex flex-col gap-[30px];
+}
