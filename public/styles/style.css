@@ -735,7 +735,7 @@ body{
     background-color: #777;
 }
 
-.formChange{
+.formChange, .formChangeEmail, .logOutWindow, .deleteWindow, .deleteReallyWindow{
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(10px);
     border: 1.5px dashed #b6b6b6;

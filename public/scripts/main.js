@@ -23,8 +23,10 @@ addColumn.addEventListener("click", () => {
         currentChangeMenu.style.display = 'none';
         currentChangeTask.style.zIndex = '1';
     }
-    currentChangeMenuColumn.style.display = 'none';
-    currentChangeColumn.style.zIndex = '1';
+    if (currentChangeMenuColumn && currentChangeMenuColumn.style.display === 'flex'){
+        currentChangeMenuColumn.style.display = 'none';
+        currentChangeColumn.style.zIndex = '1';
+    }
 });
 
 document.addEventListener('click', (e) => {
@@ -132,7 +134,7 @@ async function loadTasksForColumn(columnCurrentElement, columnId){
         const elementsToAnimate = [];
         const tasks = await res.json();
         tasks.forEach(task => {
-            const taskElement= createTask(task.title, task.color, task.description, task._id, columnCurrentElement);
+            const taskElement= createTask(task.title, task.color, task.description, task.priority, task._id, columnCurrentElement);
             elementsToAnimate.push(taskElement);
         });
         gsap.from(elementsToAnimate, {
@@ -196,6 +198,7 @@ newTaskData.addEventListener('submit', async(e) => {
     const title = data.get('nameTask');
     const color = data.get('colorTask');
     const description = data.get('descriptionTask');
+    const priority = data.get('priorityTask');
     const token = localStorage.getItem('token');
     if (!token || !currentColumnId) {
         return;
@@ -207,7 +210,7 @@ newTaskData.addEventListener('submit', async(e) => {
                 'Content-Type': 'application/json',
                 'token': token
             },
-            body: JSON.stringify({ title, color, description, columnId: currentColumnId })
+            body: JSON.stringify({ title, color, description, priority, columnId: currentColumnId })
         });
         if(!res.ok) {
             console.error('Error server');
@@ -215,7 +218,7 @@ newTaskData.addEventListener('submit', async(e) => {
         }
 
         const newTask = await res.json();
-        const newTaskElement = createTask(newTask.title, newTask.color, newTask.description, newTask._id, currentColumnElement);
+        const newTaskElement = createTask(newTask.title, newTask.color, newTask.description, priority, newTask._id, currentColumnElement);
         gsap.from(newTaskElement, {
             duration: 0.9,
             opacity: 0,
@@ -266,11 +269,14 @@ function createColumn(title, color, description, column_id) {
     return columnElement;
 }
 
-function createTask(title, color, description, taskId, currentColumn) {
+function createTask(title, color, description, priority, taskId, currentColumn) {
     const wrapper = document.createElement("div");
     wrapper.innerHTML = `<div class="task-style relative" data-id="${taskId}" style="background-color:${color}">
-    <div class="flex flex-row justify-between items-center">
+    <div class="flex flex-row items-center justify-between">
+       <div class="flex flex-row gap-[20px] justify-center items-center">
         <span class="text-style-title title">${title}</span>
+        <span class="rounded-2xl border-[1px] border-solid border-[white] bg-[black] bg-opacity-15 w-[50px] h-[35px] text-style-main text-center p-[5px] flex items-center justify-center priority">P${priority}</span>
+</div>
         <div> 
             <button class="menuBtnTask w-[24px] flex self-start">
                 <img src="../src/9023500_dots_three_outline_fill_icon.svg" alt="menu">
@@ -463,6 +469,7 @@ updateTaskForm.addEventListener('submit', async(e) =>{
     const data = new FormData(updateTaskData);
     const title = data.get('updatenameTask');
     const color = data.get('updatecolorTask');
+    const priority = data.get('updatepriorityTask');
     const description = data.get('updatedescriptionTask');
     try{
         const res = await fetch('/api/tasks/update', {
@@ -475,6 +482,7 @@ updateTaskForm.addEventListener('submit', async(e) =>{
                 taskId: currentTask,
                 title: title,
                 color: color,
+                priority: priority,
                 description: description,
             })
         })
@@ -511,6 +519,7 @@ async function updateTask(taskId){
     }
     task.querySelector('.title').innerText = data.title;
     task.querySelector('.description').innerText = data.description;
+    task.querySelector('.priority').innerText = data.priority;
     task.style.backgroundColor = data.color;
 }
 document.addEventListener('click', (e) =>{

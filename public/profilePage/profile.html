@@ -11,16 +11,16 @@
         <div class="text-[35px] logo-style ">
             RoadMap.com
         </div>
-        <div class="flex flex-row text-style-big-bold items-center justify-center gap-[50px] w-full">
+        <div class="flex flex-row text-style-big-bold items-center justify-center gap-[50px]">
             <a href="../index.html" class="glow-on-hover">Home</a>
             <a href="../mainPage/Main.html" class="glow-on-hover">RoadMap</a>
             <a class="glow-on-hover">Priority Board</a>
             <a class="glow-on-hover">Settings</a>
 
         </div>
-        <a href="" class="glow-on-hover flex flex-row gap-[10px]">
-            <span class="text-style-main overflow-hidden text-right" id="nameHeader"></span>
-            <img class="w-[140px] h-[40px]"  src="../src/326497_account_circle_icon%20(1).svg" alt="account">
+        <a href="#" class="glow-on-hover flex flex-row gap-[20px] cursor-pointer items-center justify-center">
+            <span class="text-style-main max-w-[125px] overflow-hidden text-right p-[10px]" id="nameHeader"></span>
+            <img class="w-[40px] h-[40px]"  src="../src/326497_account_circle_icon%20(1).svg" alt="account">
         </a>
     </nav>
 </header>
@@ -52,9 +52,29 @@
     <div class="flex w-[30%] absolute flex-col items-center justify-center gap-[25px] formChange z-10" style="display: none">
         <h3 class="text-style-big-bold">Change User Name</h3>
     <form id="changeUsernameForm" class="flex flex-col justify-center items-center gap-[30px] w-full">
-        <input class="input-style-default flex-shrink-0" type="text" placeholder="Enter a user name" required>
+        <input class="input-style-default flex-shrink-0" name="username" id="usernameForm" type="text" placeholder="Enter a user name" required>
         <button type="submit" class="bg-green-600 px-[1em] max-w-[120px] py-[0.7em] rounded-md hover:bg-green-700">Submit</button>
     </form>
+    </div>
+    <div class="flex w-[30%] absolute flex-col items-center justify-center gap-[25px] formChangeEmail z-10" style="display: none">
+        <h3 class="text-style-big-bold">Change Email</h3>
+        <h4 style="display: none" id="errorEmail" class="text-style-title text-red-600"></h4>
+        <form id="changeEmailForm" class="flex flex-col justify-center items-center gap-[30px] w-full">
+            <input class="input-style-default flex-shrink-0" name="email" id="emailForm" type="text" placeholder="Enter a new Email" required>
+            <button type="submit" class="bg-green-600 px-[1em] max-w-[120px] py-[0.7em] rounded-md hover:bg-green-700">Submit</button>
+        </form>
+    </div>
+    <div class="flex w-[30%] absolute flex-col items-center justify-center gap-[25px] logOutWindow z-10" style="display: none">
+        <h3 class="text-style-big-bold text-center">You want to log out???</h3>
+        <button class="bg-red-400 px-[1em] max-w-[220px] py-[0.7em] rounded-md hover:bg-red-500" id="logOutBtn">Yes, I want to log out</button>
+    </div>
+    <div class="flex w-[40%] absolute flex-col items-center justify-center gap-[25px] deleteWindow z-10" style="display: none">
+        <h3 class="text-style-big-bold text-center">You really want to delete an account???&nbsp;&nbsp;&nbsp;:_(</h3>
+        <button class="bg-red-600 px-[1em] max-w-[320px] py-[0.7em] rounded-md hover:bg-red-700" id="deleteBtn">Yes, I really want to delete an account</button>
+    </div>
+    <div class="flex w-[40%] absolute flex-col items-center justify-center gap-[25px] deleteReallyWindow z-10" style="display: none">
+        <h3 class="text-style-big-bold text-center">You really really really want to delete an account??????&nbsp;&nbsp;&nbsp;:______(</h3>
+        <button class="bg-red-600 px-[1em] max-w-[320px] py-[0.7em] rounded-md hover:bg-red-700" id="deleteReallyBtn">Yes, I really really really want to delete an account</button>
     </div>
 </main>
 <footer class="py-6 mt-16 border-t border-gray-800 text-center">

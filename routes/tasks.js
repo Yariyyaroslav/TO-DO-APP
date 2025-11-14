@@ -6,7 +6,7 @@ const Column = require('../models/Column');
 
 router.post('/', auth, async (req, res) => {
     try {
-        const { title, description, color, columnId } = req.body;
+        const { title, description, color, priority, columnId } = req.body;
         const column = await Column.findById(columnId);
         if (!column) {
             return;
@@ -19,6 +19,7 @@ router.post('/', auth, async (req, res) => {
             title,
             description,
             color,
+            priority,
             column: columnId,
             order: taskCount,
             user: req.user.id
@@ -79,14 +80,14 @@ router.delete('/delete', auth, async (req, res) => {
 })
 
 router.put('/update', auth, async (req, res) => {
-    const {taskId, title, color, description} = req.body;
+    const {taskId, title, color, description, priority} = req.body;
     try{
         if (!taskId) {
             return;
         }
         const updateTask = await Task.updateOne(
             { _id: taskId, user: req.user.id },
-            {title: title, color: color, description: description},
+            {title: title, color: color, description: description, priority: priority},
         )
         res.status(200).json(updateTask);
     }catch(err){

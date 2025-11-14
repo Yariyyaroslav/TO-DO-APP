@@ -51,7 +51,7 @@ router.post('/login', async (req, res) => {
         }
 
         const payload = { user: { id: user.id } };
-        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '5h' }, (err, token) => {
+        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '15h' }, (err, token) => {
             if (err) throw err;
             res.json({ token });
         });
@@ -78,5 +78,61 @@ router.get('/me', auth, async (req, res) => {
         return;
     }
 });
+
+router.put('/updateName', auth, async (req, res) => {
+    const newName = req.body.userName;
+    const userId = req.user.id;
+    try {
+        if (!newName || typeof newName !== 'string' || newName.trim().length === 0){
+            console.error(`Error incorrect name`);
+            return res.status(400);
+        }
+        const update = await User.updateOne(
+            {_id: userId},
+            { $set: { username: newName } })
+        if (update.nModified === 0){
+            console.error(`Not found name`);
+            return res.status(400);
+        }
+        res.json(newName);
+    }catch(err){
+        console.error(err.message);
+    }
+})
+
+router.put('/updateEmail', auth, async (req, res) => {
+    const newEmail = req.body.email;
+    const userId = req.user.id;
+    try {
+        if (!newEmail || typeof newEmail !== 'string' || newEmail.trim().length === 0){
+            console.error(`Error incorrect email`);
+            return res.status(400);
+        }
+        const update = await User.updateOne(
+            {_id: userId},
+            { $set: { email: newEmail } },)
+        if (update.nModified === 0){
+            console.error(`Not found email`);
+            return res.status(400);
+        }
+        res.json(newEmail);
+    }catch(err){
+        console.error(err.message);
+        return res.sendStatus(400)
+
+    }
+})
+
+router.delete('/delete', auth, async (req, res) => {
+    const userId = req.user.id;
+    try{
+        await User.deleteOne({_id: userId});
+        res.sendStatus(200);
+    }catch(err){
+        console.error(err.message);
+    }
+
+})
+
 
 module.exports = router;
