@@ -1,7 +1,6 @@
 const nameHeader = document.getElementById("nameHeader");
 const token = localStorage.getItem("token");
 let userData;
-
 async function getUserInfo(){
     if(!token){
         return;

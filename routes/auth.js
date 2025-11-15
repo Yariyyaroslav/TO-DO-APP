@@ -42,6 +42,7 @@ router.post('/login', async (req, res) => {
 
         const user = await User.findOne({ email });
         if (!user) {
+            res.sendStatus(404)
             return;
         }
 

@@ -60,7 +60,10 @@ if (logForm) {
                 },
                 body: JSON.stringify({email, password})
             });
-
+            if (res.status === 404) {
+                errH.style.display = 'block';
+                errH.innerHTML = 'User not found';
+            }
             const data = await res.json();
 
             if (!res.ok) {
