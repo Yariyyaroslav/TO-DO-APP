@@ -3,10 +3,20 @@ window.addEventListener('DOMContentLoaded', () => {
         window.location.href = "../registerPage/register.html";
     }
 })
+function minutesToTime(totalMinutes) {
+    const hours = Math.floor(totalMinutes / 60);
+    const mins = totalMinutes % 60;
+    const hStr = hours.toString().padStart(2, '0');
+    const mStr = mins.toString().padStart(2, '0');
+    return `${hStr}:${mStr}`;
+}
 document.addEventListener('DOMContentLoaded', async() => {
     const data = await getUserInfo();
+    console.log(data);
     document.getElementById('username').innerHTML = data.username;
     document.getElementById('email').innerHTML = data.email;
+    From.value = minutesToTime(data.wHours.from);
+    To.value = minutesToTime(data.wHours.to);
 })
 const errorEmail = document.getElementById('errorEmail')
 const email = document.getElementById('email')
@@ -26,7 +36,8 @@ const deleteBtn = document.getElementById('deleteBtn');
 const deleteReallyBtn = document.getElementById('deleteReallyBtn');
 const deleteWindow = document.querySelector('.deleteWindow')
 const deleteReallyWindow = document.querySelector('.deleteReallyWindow')
-
+const From = document.getElementById('start');
+const To = document.getElementById('to');
 deleteAcc.addEventListener('click', (e) => {
     deleteWindow.style.display = 'flex';
     backdrop.style.display = 'flex';
@@ -35,6 +46,41 @@ deleteAcc.addEventListener('click', (e) => {
 deleteBtn.addEventListener('click', (e) => {
     deleteReallyWindow.style.display = 'flex';
 })
+function getMinutes(timeStr) {
+    const [hours, minutes] = timeStr.split(':').map(Number);
+    return (hours * 60) + minutes;
+}
+To.addEventListener('change', (e) => {
+    workingHoursUpdate()
+})
+From.addEventListener('change', (e) => {
+    workingHoursUpdate()
+})
+async function workingHoursUpdate() {
+    const startMinutes = getMinutes(From.value);
+    const endMinutes = getMinutes(To.value);
+    const wH = endMinutes - startMinutes;
+    const token = localStorage.getItem("token");
+    try{
+        const res = await fetch('/api/auth/workingHours',{
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token,
+            },
+            body: JSON.stringify({
+                wHours: {
+                    from: startMinutes,
+                    to: endMinutes,
+                    Minute: wH
+                }})
+        })
+        console.log('success');
+    }catch(err){
+        console.log(err)
+    }
+}
+
 
 deleteReallyBtn.addEventListener('click', async (e) => {
     const token = localStorage.getItem('token');

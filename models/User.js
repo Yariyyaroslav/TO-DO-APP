@@ -18,6 +18,17 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 6
+    },
+    wHours: {
+        from: {
+            type: Number,
+        },
+        to: {
+            type: Number,
+        },
+        Minute: {
+            type: Number,
+        }
     }
 }, { timestamps: true });
 

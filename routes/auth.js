@@ -124,6 +124,17 @@ router.put('/updateEmail', auth, async (req, res) => {
     }
 })
 
+router.put('/workingHours', auth, async (req, res) => {
+    const { wHours } = req.body;
+    const userId = req.user.id;
+    try{
+        await User.updateOne({_id: userId}, {$set: { wHours: wHours }})
+        res.sendStatus(200)
+    }catch(err){
+        console.error(err.message);
+    }
+})
+
 router.delete('/delete', auth, async (req, res) => {
     const userId = req.user.id;
     try{
