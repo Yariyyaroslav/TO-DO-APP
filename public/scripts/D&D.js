@@ -18,6 +18,7 @@ function initSortable(taskContainer){
                     const oldTaskElements = oldColumnElement.querySelectorAll('.task-style');
                     const oldTaskIds = Array.from(oldTaskElements).map(task => task.dataset.id);
                     updateTaskOrder(oldColumnId, oldTaskIds);
+                    notifyServerAboutMove(taskId, newColumnId);
                 }
             gsap.to([oldColumnElement, newColumnElement], {
                 duration: 0.5,
@@ -32,6 +33,44 @@ function initSortable(taskContainer){
     });
 }
 
+async function notifyServerAboutMove(taskId, newColumnId) {
+    const token = localStorage.getItem("token");
+    try{
+        const res = await fetch('/api/tasks/statusChange', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json', 'token': token },
+            body: JSON.stringify({ taskId, newColumnId })
+        })
+        let task;
+        if (res.status === 200) {
+            task = await res.json();
+            const column = columnDiv.querySelector(`[data-column-id="${newColumnId}"]`);
+            const taskElement = column ? column.querySelector(`[data-id="${taskId}"]`) : null;
+
+            if (taskElement) {
+                const infoBlock = taskElement.querySelector('.info');
+                const timeSpentEl = taskElement.querySelector('.timespent');
+                if (task.completedAt) {
+                    if (infoBlock) {
+                        infoBlock.style.display = 'flex';
+                    }
+                    if (timeSpentEl) {
+                        const timeLabel = task.timeSpent ? `${task.timeSpent}m` : '0m';
+                        timeSpentEl.innerText = timeLabel;
+                    }
+                } else {
+                    if (infoBlock) {
+                        infoBlock.style.display = 'none';
+                    }
+                }
+            }
+
+        }
+
+    }catch(err){
+        console.error(err)
+    }
+}
 async function updateTaskOrder(columnId, taskIds){
     const token = localStorage.getItem("token");
     if(!token){

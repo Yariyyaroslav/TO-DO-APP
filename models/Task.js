@@ -31,6 +31,10 @@ const TaskSchema = new mongoose.Schema({
 
     completedAt: { type: Date },
 
+    pullRequest: {
+        type: String,
+    },
+
     timeSpent: { type: Number, default: 0 }
 
 }, { timestamps: true });

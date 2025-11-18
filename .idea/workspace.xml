@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29a752a6-f0f5-4d4f-8568-f103de66f1e4" name="Changes" comment="version 1.0">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="29a752a6-f0f5-4d4f-8568-f103de66f1e4" name="Changes" comment="version 1.1 beta">
+      <change beforePath="$PROJECT_DIR$/models/Column.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Column.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Task.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Task.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/dist/output.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/dist/output.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/profilePage/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/profilePage/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/D&amp;D.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/D&amp;D.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/columns.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/tasks.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/tasks.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +106,7 @@
       <workItem from="1763164082468" duration="7066000" />
       <workItem from="1763283855565" duration="2811000" />
       <workItem from="1763291653792" duration="636000" />
-      <workItem from="1763479910662" duration="2975000" />
+      <workItem from="1763479910662" duration="10449000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <option name="closed" value="true" />
@@ -182,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763224150866</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="version 1.1 beta">
+      <option name="closed" value="true" />
+      <created>1763482913156</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1763482913156</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +199,7 @@
     <MESSAGE value="add a lot" />
     <MESSAGE value="." />
     <MESSAGE value="version 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="version 1.0" />
+    <MESSAGE value="version 1.1 beta" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 1.1 beta" />
   </component>
 </project>

@@ -9,6 +9,10 @@ const ColumnSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String,
+        default: ''
+    },
     color: {
         type: String,
         default: '#FFFFFF'

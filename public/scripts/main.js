@@ -13,17 +13,17 @@ let currentColumnElement = null;
 let currentColumnId = null;
 
 addColumn.addEventListener("click", () => {
-    if(!localStorage.getItem('token')){
+    if (!localStorage.getItem('token')) {
         window.location.href = '../registerPage/register.html';
         return;
     }
     newColumnForm.style.display = newColumnForm.style.display === 'none' ? 'flex' : 'none';
     backdrop.style.display = backdrop.style.display === 'none' ? 'block' : 'none';
-    if(currentChangeMenu && currentChangeMenu.style.display === 'flex'){
+    if (currentChangeMenu && currentChangeMenu.style.display === 'flex') {
         currentChangeMenu.style.display = 'none';
         currentChangeTask.style.zIndex = '1';
     }
-    if (currentChangeMenuColumn && currentChangeMenuColumn.style.display === 'flex'){
+    if (currentChangeMenuColumn && currentChangeMenuColumn.style.display === 'flex') {
         currentChangeMenuColumn.style.display = 'none';
         currentChangeColumn.style.zIndex = '1';
     }
@@ -45,7 +45,7 @@ document.addEventListener('click', (e) => {
     }
     if (updateTaskForm.style.display === 'flex') {
         const isEditButton = e.target.closest('.editMenu');
-        if(!updateTaskForm.contains(e.target) && !isEditButton) {
+        if (!updateTaskForm.contains(e.target) && !isEditButton) {
             updateTaskForm.style.display = 'none';
             backdrop.style.display = 'none';
         }
@@ -57,11 +57,11 @@ columnDiv.addEventListener('click', (e) => {
     if (newTaskButton) {
         newTaskForm.style.display = 'flex';
         backdrop.style.display = 'block';
-        if(currentChangeMenu && currentChangeMenu.style.display === 'flex') {
+        if (currentChangeMenu && currentChangeMenu.style.display === 'flex') {
             currentChangeMenu.style.display = 'none';
             currentChangeTask.style.zIndex = '1';
         }
-        if(currentChangeMenuColumn && currentChangeMenuColumn.style.display === 'flex') {
+        if (currentChangeMenuColumn && currentChangeMenuColumn.style.display === 'flex') {
             currentChangeMenuColumn.style.display = 'none';
             currentChangeColumn.style.zIndex = '1';
         }
@@ -80,14 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadColumns() {
     const token = localStorage.getItem("token");
-    try{
+    try {
         const res = await fetch('/api/columns', {
             method: 'GET',
             headers: {
                 'token': token
             }
         });
-        if(!res.ok) {
+        if (!res.ok) {
             console.error('Could not fetch columns.');
             if (res.status === 401) window.location.href = '/HomePage/Home.html';
         }
@@ -111,14 +111,14 @@ async function loadColumns() {
             stagger: 0.2
         });
 
-    }catch(err){
+    } catch (err) {
         console.log(err);
     }
 }
 
-async function loadTasksForColumn(columnCurrentElement, columnId){
+async function loadTasksForColumn(columnCurrentElement, columnId) {
     const token = localStorage.getItem("token");
-    if(!token) return;
+    if (!token) return;
 
     try {
         const res = await fetch(`/api/tasks/column/${columnId}`, {
@@ -127,14 +127,14 @@ async function loadTasksForColumn(columnCurrentElement, columnId){
                 'token': token
             }
         });
-        if(!res.ok) {
+        if (!res.ok) {
             console.error('Error server');
             return;
         }
         const elementsToAnimate = [];
         const tasks = await res.json();
         tasks.forEach(task => {
-            const taskElement= createTask(task.title, task.color, task.description, task.priority, task._id, columnCurrentElement);
+            const taskElement = createTask(task.title, task.color, task.description, task.priority, task._id, columnCurrentElement, task.completedAt, task.timeSpent, task.pullRequest);
             elementsToAnimate.push(taskElement);
         });
         gsap.from(elementsToAnimate, {
@@ -144,10 +144,11 @@ async function loadTasksForColumn(columnCurrentElement, columnId){
             ease: "expo.out",
             stagger: 0.1
         });
-    }catch(err){
+    } catch (err) {
         console.log(err);
     }
 }
+
 initColumDrag()
 newColumnData.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -157,19 +158,19 @@ newColumnData.addEventListener('submit', async (e) => {
     const description = data.get('description');
 
     const token = localStorage.getItem('token');
-    if(!token) return;
+    if (!token) return;
 
-    try{
+    try {
         const res = await fetch('/api/columns', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'token': token
             },
-            body: JSON.stringify({ title, color, description })
+            body: JSON.stringify({title, color, description})
         });
 
-        if(!res.ok) {
+        if (!res.ok) {
             console.error('Error');
             return;
         }
@@ -187,12 +188,12 @@ newColumnData.addEventListener('submit', async (e) => {
         newColumnForm.style.display = 'none';
         backdrop.style.display = 'none';
         newColumnData.reset();
-    }catch(err){
+    } catch (err) {
         console.log(err);
     }
 });
 
-newTaskData.addEventListener('submit', async(e) => {
+newTaskData.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = new FormData(newTaskData);
     const title = data.get('nameTask');
@@ -203,22 +204,22 @@ newTaskData.addEventListener('submit', async(e) => {
     if (!token || !currentColumnId) {
         return;
     }
-    try{
+    try {
         const res = await fetch('/api/tasks', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'token': token
             },
-            body: JSON.stringify({ title, color, description, priority, columnId: currentColumnId })
+            body: JSON.stringify({title, color, description, priority, columnId: currentColumnId})
         });
-        if(!res.ok) {
+        if (!res.ok) {
             console.error('Error server');
             return
         }
 
         const newTask = await res.json();
-        const newTaskElement = createTask(newTask.title, newTask.color, newTask.description, priority, newTask._id, currentColumnElement);
+        const newTaskElement = createTask(newTask.title, newTask.color, newTask.description, priority, newTask._id, currentColumnElement, null, 0, null);
         gsap.from(newTaskElement, {
             duration: 0.9,
             opacity: 0,
@@ -228,7 +229,7 @@ newTaskData.addEventListener('submit', async(e) => {
         newTaskForm.style.display = 'none';
         backdrop.style.display = 'none';
         newTaskData.reset();
-    }catch(err){
+    } catch (err) {
         console.log(err);
     }
 });
@@ -269,8 +270,13 @@ function createColumn(title, color, description, column_id) {
     return columnElement;
 }
 
-function createTask(title, color, description, priority, taskId, currentColumn) {
+function createTask(title, color, description, priority, taskId, currentColumn, completedAt, timeSpent, pullRequest) {
     const wrapper = document.createElement("div");
+    const displayStyle = completedAt ? 'flex' : 'none';
+    if (!pullRequest) {
+        pullRequest = '';
+    }
+    const timeLabel = `${timeSpent}m`;
     wrapper.innerHTML = `<div class="task-style relative" data-id="${taskId}" style="background-color:${color}">
     <div class="flex flex-row items-center justify-between">
        <div class="flex flex-row gap-[20px] justify-center items-center">
@@ -291,10 +297,20 @@ function createTask(title, color, description, priority, taskId, currentColumn) 
                      <span class="text-style-title text-[#E32636]">Delete</span>
                 </div>
             </div> </div> </div> <p class="text-style-main description">${description || ''}</p> 
+            <div class="flex flex-col gap-[10px] justify-center info" style="display: ${displayStyle};">
+                <span class="timespent">${timeLabel}</span>
+                <div>
+                <form action="#" class="flex flex-col gap-[10px] justify-center formLink">
+                <label class="text-style-main flex gap-[10px] justify-center items-center">Pull request:<input class="input-style-default link" type="text" value="${pullRequest}"></label>
+                <button type="submit" class="p-[10px] bg-green-600 rounded-lg w-full sublink">Submit</button>
+</form>
+</div>
+</div>
 </div>`;
+
     const taskElement = wrapper.firstElementChild;
 
-    if(currentColumn){
+    if (currentColumn) {
         const container = currentColumn.querySelector('.tasks-container');
         if (container) {
             container.appendChild(taskElement);
@@ -304,6 +320,7 @@ function createTask(title, color, description, priority, taskId, currentColumn) 
     }
     return taskElement;
 }
+
 let currentTask;
 let currentChangeTask;
 let currentChangeMenu;
@@ -311,9 +328,10 @@ let currentChangeMenuColumn;
 let currentChangeColumn;
 let currentColumn;
 let currentColumnElementUpdate;
+
 document.addEventListener('DOMContentLoaded', () => {
-    columnDiv.addEventListener('click', async(e) =>{
-        if(e.target.closest('.menuBtnTask')) {
+    columnDiv.addEventListener('click', async (e) => {
+        if (e.target.closest('.menuBtnTask')) {
             const btn = e.target.closest('.menuBtnTask');
             const task = btn.closest('.task-style')
             const changeMenu = task.querySelector('.change-window');
@@ -326,14 +344,14 @@ document.addEventListener('DOMContentLoaded', () => {
             currentChangeMenu = changeMenu;
             if (!wasOpen) {
                 changeMenu.style.display = 'flex';
-                task.style.zIndex =  '10';
+                task.style.zIndex = '10';
             }
         }
-        if(e.target.closest('.deleteMenu')) {
+        if (e.target.closest('.deleteMenu')) {
             const task = e.target.closest('.task-style');
             const token = localStorage.getItem('token');
             const taskId = task.dataset.id;
-            try{
+            try {
                 const res = await fetch('/api/tasks/delete', {
                     method: 'DELETE',
                     headers: {
@@ -344,22 +362,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         taskId: taskId,
                     })
                 })
-                if(res.status === 200){
+                if (res.status === 200) {
                     task.remove();
                 }
-            }catch(err){
+            } catch (err) {
                 console.error(err);
             }
         }
-        if(e.target.closest('.editMenu')) {
+        if (e.target.closest('.editMenu')) {
             const task = e.target.closest('.task-style');
             currentTask = task.dataset.id;
             updateTaskForm.style.display = 'flex';
             currentChangeMenu.style.display = 'none';
             backdrop.style.display = 'block';
-            task.style.zIndex =  '1';
+            task.style.zIndex = '1';
         }
-        if(e.target.closest('.menuBtnTaskColumn')) {
+        if (e.target.closest('.menuBtnTaskColumn')) {
             const btn = e.target.closest('.menuBtnTaskColumn');
             const column = btn.closest('.column')
             const changeMenu = column.querySelector('.change-window-column');
@@ -374,13 +392,13 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             if (!wasOpen) {
                 changeMenu.style.display = 'flex';
-                column.style.zIndex =  '10';
+                column.style.zIndex = '10';
             }
         }
-        if(e.target.closest('.deleteMenuColumn')) {
+        if (e.target.closest('.deleteMenuColumn')) {
             const column = e.target.closest('.column');
             const token = localStorage.getItem('token');
-            try{
+            try {
                 const res = await fetch('/api/columns/delete', {
                     method: 'DELETE',
                     headers: {
@@ -391,30 +409,30 @@ document.addEventListener('DOMContentLoaded', () => {
                         columnId: currentColumn,
                     })
                 })
-                if(res.status === 200){
+                if (res.status === 200) {
                     column.remove();
                 }
-            }catch(err){
+            } catch (err) {
                 console.error(err);
             }
         }
-        if(e.target.closest('.editMenuColumn')) {
+        if (e.target.closest('.editMenuColumn')) {
             const column = e.target.closest('.column');
             updateColumnForm.style.display = 'flex';
             currentChangeMenuColumn.style.display = 'none';
             backdrop.style.display = 'block';
-            column.style.zIndex =  '1';
+            column.style.zIndex = '1';
         }
     })
 })
-updateColumnForm.addEventListener('submit', async(e) =>{
+updateColumnForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     const data = new FormData(updateColumnData);
     const title = data.get('updatenameColumn');
     const color = data.get('updatecolorColumn');
     const description = data.get('updatedescriptionColumn');
-    try{
+    try {
         const res = await fetch('/api/columns/update', {
             method: 'PUT',
             headers: {
@@ -428,20 +446,21 @@ updateColumnForm.addEventListener('submit', async(e) =>{
                 description: description,
             })
         })
-        if(res.status === 200){
+        if (res.status === 200) {
             await updateColumn(currentColumn);
             updateColumnForm.style.display = 'none';
             backdrop.style.display = 'none';
             updateColumnData.reset();
         }
-    }catch(err){
+    } catch (err) {
         console.error(err);
     }
 })
-async function updateColumn(columnId){
+
+async function updateColumn(columnId) {
     const token = localStorage.getItem('token');
     let data;
-    try{
+    try {
         const res = await fetch(`/api/columns/column/${columnId}`, {
             method: 'GET',
             headers: {
@@ -450,20 +469,21 @@ async function updateColumn(columnId){
             }
         })
         data = await res.json();
-    }catch(err){
+    } catch (err) {
         console.error(err);
     }
     console.log(data);
     const column = columnDiv.querySelector(`[data-column-id="${currentColumn}"]`)
     console.log(column);
-    if(!column){
+    if (!column) {
         return;
     }
     column.querySelector('.title').innerText = data.title;
     column.dataset.description = data.description;
     column.style.borderTopColor = data.color;
 }
-updateTaskForm.addEventListener('submit', async(e) =>{
+
+updateTaskForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     const data = new FormData(updateTaskData);
@@ -471,7 +491,7 @@ updateTaskForm.addEventListener('submit', async(e) =>{
     const color = data.get('updatecolorTask');
     const priority = data.get('updatepriorityTask');
     const description = data.get('updatedescriptionTask');
-    try{
+    try {
         const res = await fetch('/api/tasks/update', {
             method: 'PUT',
             headers: {
@@ -486,20 +506,21 @@ updateTaskForm.addEventListener('submit', async(e) =>{
                 description: description,
             })
         })
-        if(res.status === 200){
+        if (res.status === 200) {
             updateTask(currentTask);
             updateTaskForm.style.display = 'none';
             currentChangeMenu.style.display = 'none';
             backdrop.style.display = 'none';
         }
-    }catch(err){
+    } catch (err) {
         console.error(err);
     }
 })
-async function updateTask(taskId){
+
+async function updateTask(taskId) {
     const token = localStorage.getItem('token');
     let data;
-    try{
+    try {
         const res = await fetch(`/api/tasks/task/${taskId}`, {
             method: 'GET',
             headers: {
@@ -508,13 +529,13 @@ async function updateTask(taskId){
             }
         })
         data = await res.json();
-    }catch(err){
+    } catch (err) {
         console.error(err);
     }
     console.log(data);
     const task = columnDiv.querySelector(`[data-id="${taskId}"]`)
     console.log(task);
-    if(!task){
+    if (!task) {
         return;
     }
     task.querySelector('.title').innerText = data.title;
@@ -522,8 +543,44 @@ async function updateTask(taskId){
     task.querySelector('.priority').innerText = data.priority;
     task.style.backgroundColor = data.color;
 }
-document.addEventListener('click', (e) =>{
+
+document.addEventListener('click', (e) => {
     console.log(e.target)
 
 })
+
+
+// --- ЗАМЕНА ВСЕГО ТВОЕГО БЛОКА С .sublink ---
+
+document.addEventListener('submit', async (e) => {
+
+    const form = e.target.closest('.formLink');
+    if (!form) return;
+
+    e.preventDefault();
+    console.log('sdasd');
+
+    const taskId = form.closest('.task-style').dataset.id;
+
+    const linkElement = form.querySelector('.link');
+    if (!linkElement) {
+        console.error("CRITICAL: Input element (.link) not found.");
+        return;
+    }
+
+    const link = linkElement.value;
+    const token = localStorage.getItem("token");
+
+    const res = await fetch('/api/tasks/pull', {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json', 'token': token},
+        body: JSON.stringify({taskId, link})
+    })
+
+    if (res.ok) {
+        console.log('success');
+        const data = await res.json();
+        linkElement.value = data.pullRequest;
+    }
+});
 

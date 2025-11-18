@@ -3,7 +3,7 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const Task = require('../models/Task');
 const Column = require('../models/Column');
-
+const User = require('../models/User');
 router.post('/', auth, async (req, res) => {
     try {
         const { title, description, color, priority, columnId } = req.body;
@@ -115,6 +115,60 @@ router.get('/getAll', auth, async (req, res) => {
     }catch(err){
         console.error(err.message);
         res.sendStatus(500);
+    }
+})
+function calculateWorkingDuration(startDate, endDate, workStartMin, workEndMin) {
+    const startDay = workStartMin;
+    const endDay = workEndMin;
+    let totalMinutes = 0;
+    let current = new Date(startDate);
+    const end = new Date(endDate);
+    while (current < end) {
+        const currentMinutes = current.getHours() * 60 + current.getMinutes();
+        if (currentMinutes >= startDay && currentMinutes < endDay) {
+            totalMinutes++;
+        }
+        current.setMinutes(current.getMinutes() + 1);
+    }
+    return totalMinutes;
+}
+router.put('/statusChange', auth, async (req, res) => {
+    const { taskId, newColumnId } = req.body;
+    try {
+        const task = await Task.findOne({ _id: taskId });
+        const column = await Column.findOne({ _id: newColumnId });
+        const user = await User.findOne({ _id: req.user.id });
+        if (column.description === 'Doing') {
+            task.startedAt = new Date();
+        }
+        if (column.description === 'Done' && task.startedAt) {
+            const end = new Date();
+            task.completedAt = end;
+            const minutes = calculateWorkingDuration(task.startedAt, end, user.wHours.from, user.wHours.to);
+            task.timeSpent = (task.timeSpent || 0) + minutes;
+
+        }
+        task.column = newColumnId;
+        await task.save();
+
+        return res.json(task);
+    } catch (err) {
+        console.error(err);
+        res.sendStatus(500);
+    }
+});
+router.put('/pull', auth, async (req, res) => {
+    const {taskId, link} = req.body;
+    try{
+        if (!taskId) {
+            return;
+        }
+        const task = await Task.findOne({ _id: taskId });
+        task.pullRequest = link;
+        await task.save();
+        res.json(task);
+    }catch(err){
+        console.error(err.message);
     }
 })
 module.exports = router;

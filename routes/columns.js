@@ -7,11 +7,12 @@ const Task = require("../models/Task");
 
 router.post('/', auth, async (req, res) => {
     try {
-        const { title, color } = req.body;
+        const { title, color, description} = req.body;
 
         const newColumn = new Column({
             title,
             color,
+            description,
             user: req.user.id
         });
 
@@ -19,7 +20,6 @@ router.post('/', auth, async (req, res) => {
         res.json(column);
     } catch (err) {
         console.error(err.message);
-        return;
     }
 });
 
