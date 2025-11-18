@@ -549,9 +549,6 @@ document.addEventListener('click', (e) => {
 
 })
 
-
-// --- ЗАМЕНА ВСЕГО ТВОЕГО БЛОКА С .sublink ---
-
 document.addEventListener('submit', async (e) => {
 
     const form = e.target.closest('.formLink');
